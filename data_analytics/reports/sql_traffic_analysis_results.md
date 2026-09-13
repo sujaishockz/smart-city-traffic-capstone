@@ -80,3 +80,26 @@ June onward, another instance of the coverage gap noted above.)*
    the holiday fell on in each year, temperature alone does not fully explain
    the year-to-year differences — this is a useful segue into the upcoming
    correlation analysis.
+
+## Descriptive Statistics and Correlation (Task 2)
+
+The statistics script calculates the following from all 48,204 source rows:
+
+| Measure | Result |
+|---|---:|
+| Mean traffic volume | 3,259.82 |
+| Median traffic volume | 3,380.00 |
+| Standard deviation | 1,986.86 |
+| Variance | 3,947,615.32 |
+| Minimum traffic volume | 0 |
+| Maximum traffic volume | 7,280 |
+| Range | 7,280 |
+| Temperature/traffic Pearson correlation | 0.1303 |
+
+Traffic volume varies substantially because the dataset includes quiet overnight
+periods and busy commuting periods. The median being higher than the mean shows
+that low-volume observations pull the average downward. The temperature/traffic
+correlation is weak and positive, so temperature alone is not a strong linear
+predictor of traffic volume. This does not prove that temperature has no effect:
+time of day, weekday, season, weather and duplicate timestamps may influence the
+observed relationship, and correlation does not imply causation.

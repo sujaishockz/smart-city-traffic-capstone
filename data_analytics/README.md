@@ -21,12 +21,18 @@ data_analytics/
 └── README.md
 ```
 
+The descriptive statistics and correlation script can be run with:
+
+```bash
+python3 sql/04_descriptive_statistics.py
+```
+
 ## Status
 
 - [x] **SQL-Based Traffic Analysis**: data loaded into SQLite and
       verified; annual trend and holiday-temperature queries written and run
       (see `reports/sql_traffic_analysis_results.md`).
-- [ ] Descriptive Statistics and Correlation
+- [x] Descriptive Statistics and Correlation
 - [ ] Probability and Congestion Analysis
 - [ ] Power BI Traffic Intelligence Dashboard
 - [ ] 1–2 page Data Analytics Insights Report (final, covering all of the above)
