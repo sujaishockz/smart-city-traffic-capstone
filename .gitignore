@@ -1,0 +1,52 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+
+# ===== Virtual environments =====
+.venv/
+venv/
+env/
+ENV/
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Editors / IDE =====
+.vscode/
+.idea/
+*.swp
+
+# ===== Logs (keep sample logs, ignore noisy full-run logs) =====
+*.log
+!python_pipeline/logs/pipeline_sample.log
+
+# ===== MLflow =====
+machine_learning/mlruns/
+mlartifacts/
+
+# ===== Secrets / credentials (never commit these) =====
+.env
+*.env
+*.pem
+*.key
+secrets.json
+config_local.py
+
+# ===== Large / temporary files =====
+*.tmp
+*.bak
+*.zip
+
+# ===== SQLite (keep the built DB out of git if it gets large; comment out if you want to submit it) =====
+# data_analytics/db/*.db
+
+# ===== Power BI temp files =====
+*.pbix.tmp
