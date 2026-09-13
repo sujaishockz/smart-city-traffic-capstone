@@ -37,7 +37,7 @@ python3 sql/05_probability_congestion.py
 - [x] Probability and Congestion Analysis
 - [~] Power BI Traffic Intelligence Dashboard (queries and specification ready;
    `.pbix` creation remains a Power BI Desktop step)
-- [ ] 1–2 page Data Analytics Insights Report (final, covering all of the above)
+- [x] 1–2 page Data Analytics Insights Report (see `reports/part1_insights_report.md`)
 
 ## How to Run
 
