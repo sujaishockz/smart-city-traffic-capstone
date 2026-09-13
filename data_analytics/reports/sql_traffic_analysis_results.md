@@ -103,3 +103,26 @@ correlation is weak and positive, so temperature alone is not a strong linear
 predictor of traffic volume. This does not prove that temperature has no effect:
 time of day, weekday, season, weather and duplicate timestamps may influence the
 observed relationship, and correlation does not imply causation.
+
+## Probability and Congestion Analysis (Task 3)
+
+Congestion is defined as traffic volume greater than 5,500 vehicles. Clear
+weather means `weather_main = Clear`, cloudy weather means `weather_main = Clouds`,
+and high temperature means temperature greater than 292K.
+
+| Measure | Result |
+|---|---:|
+| P(Congestion) | 0.1473 |
+| P(Clear Weather) | 0.2778 |
+| P(Congestion AND Clear Weather) | 0.0366 |
+| P(Clear Weather \| Congestion) | 0.2483 |
+| P(High Temperature \| Congestion) | 0.2630 |
+| P(Congestion) × P(Clear Weather) | 0.0409 |
+| Clear-to-cloudy congestion odds ratio | 0.7354 |
+
+The observed joint probability, 0.0366, differs from the independence estimate
+of 0.0409, so congestion and clear weather are not exactly independent in this
+sample. Congestion is less likely in clear weather than in cloudy weather under
+the chosen definition: the clear-to-cloudy odds ratio is below 1. Weather alone
+does not explain congestion, however, because time of day, weekday effects and
+seasonality are also important traffic drivers.

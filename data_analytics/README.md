@@ -25,6 +25,7 @@ The descriptive statistics and correlation script can be run with:
 
 ```bash
 python3 sql/04_descriptive_statistics.py
+python3 sql/05_probability_congestion.py
 ```
 
 ## Status
@@ -33,7 +34,7 @@ python3 sql/04_descriptive_statistics.py
       verified; annual trend and holiday-temperature queries written and run
       (see `reports/sql_traffic_analysis_results.md`).
 - [x] Descriptive Statistics and Correlation
-- [ ] Probability and Congestion Analysis
+- [x] Probability and Congestion Analysis
 - [ ] Power BI Traffic Intelligence Dashboard
 - [ ] 1–2 page Data Analytics Insights Report (final, covering all of the above)
 
