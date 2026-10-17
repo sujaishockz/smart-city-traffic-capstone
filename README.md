@@ -41,10 +41,10 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 4: Provide at least three CLI queries, command/argument logging, and graceful invalid-input handling.
 - [x] Task 5: Document setup, run steps, logging, and reproducibility; include pinned dependencies, sample log, and methodology/findings report.
 
-### Milestone 3: Machine Learning and AI — Not Started
+### Milestone 3: Machine Learning and AI — In Progress
 
-- [ ] Create the quartile-based congestion category and documented proxy accident-risk label; state that it is not actual accident prediction.
-- [ ] Task 1: Train at least two classification and two regression algorithms; compare with the specified metrics.
+- [x] Create the quartile-based congestion category and documented proxy accident-risk label; state that it is not actual accident prediction.
+- [x] Task 1: Train at least two classification and two regression algorithms; compare with the specified metrics.
 - [ ] Task 2: Apply K-means clustering and association-rule mining; interpret clusters and high-lift rules.
 - [ ] Task 3: Implement a neural network, LSTM, or CNN and apply SHAP or LIME explainability.
 - [ ] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.

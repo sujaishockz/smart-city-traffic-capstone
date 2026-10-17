@@ -1,0 +1,53 @@
+{
+  "dataset": "python_pipeline/data/processed/traffic_features.csv",
+  "split": {
+    "strategy": "chronological",
+    "train_rows": 38549,
+    "test_rows": 9638,
+    "test_start": "2017-11-01T20:00:00",
+    "test_end": "2018-09-30T23:00:00",
+    "congestion_thresholds_from_training": {
+      "q1": 1186.0,
+      "q2": 3377.0,
+      "q3": 4939.0
+    }
+  },
+  "proxy_label": "high_risk_proxy = training-threshold upper-half congestion (High/Severe) AND adverse or low-visibility observed weather; not an accident label.",
+  "classification": {
+    "target": "high_risk_proxy",
+    "positive_test_rows": 2020,
+    "models": {
+      "logistic_regression": {
+        "accuracy": 0.800581033409421,
+        "precision": 0.5124745417515275,
+        "recall": 0.9965346534653465,
+        "f1": 0.6768661735036987,
+        "roc_auc": 0.8989883262413929
+      },
+      "random_forest": {
+        "accuracy": 0.971052085494916,
+        "precision": 0.8958617553433379,
+        "recall": 0.9752475247524752,
+        "f1": 0.9338705854467884,
+        "roc_auc": 0.9923318014395297
+      }
+    },
+    "selected_model": "random_forest"
+  },
+  "regression": {
+    "target": "traffic_volume",
+    "models": {
+      "random_forest": {
+        "mae": 297.08301335482776,
+        "rmse": 530.9662471711783,
+        "r2": 0.9271783330571101
+      },
+      "hist_gradient_boosting": {
+        "mae": 287.3652681454976,
+        "rmse": 509.0953169097043,
+        "r2": 0.9330539447995343
+      }
+    },
+    "selected_model": "hist_gradient_boosting"
+  }
+}
