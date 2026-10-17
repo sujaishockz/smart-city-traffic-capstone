@@ -47,7 +47,7 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 1: Train at least two classification and two regression algorithms; compare with the specified metrics.
 - [x] Task 2: Apply K-means clustering and association-rule mining; interpret clusters and high-lift rules.
 - [x] Task 3: Implement a neural network, LSTM, or CNN and apply SHAP or LIME explainability.
-- [ ] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.
+- [x] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.
 - [ ] Task 5: Build a travel-timing recommendation using day type and, where useful, weather.
 - [ ] Task 6.1: Document model versions and performance.
 - [ ] Task 6.2: Track experiments, parameters, metrics, and model versions with MLflow.

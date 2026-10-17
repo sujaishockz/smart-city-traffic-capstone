@@ -1,6 +1,6 @@
 # Machine Learning and AI: Building an Intelligent Mobility Solution
 
-**Status: in progress.** Tasks 1 through 3 are implemented and validated; remaining
+**Status: in progress.** Tasks 1 through 4 are implemented and validated; remaining
 milestone tasks are listed below.
 
 ## Planned Folder Structure
@@ -18,11 +18,15 @@ machine_learning/
 │   ├── pattern_analysis.json
 │   ├── neural_explainability.md
 │   ├── neural_explainability.json
+│   ├── anomaly_detection.md
+│   ├── anomaly_monitoring.json
+│   ├── anomaly_scores.csv
 │   ├── supervised_metrics.json
 │   └── (final capstone report)
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
 ├── analyze_patterns.py
+├── detect_anomalies.py
 ├── train_neural_explainer.py
 ├── train_supervised.py
 └── README.md
@@ -140,6 +144,26 @@ LIME explanations are local surrogate approximations, not causal explanations.
 Observed weather contributes to the proxy-label definition, so weather
 features partly explain the constructed label. Neither the model nor its
 explanations predict observed accidents.
+
+## Advanced Technique: Isolation Forest (Task 4)
+
+Run the chronological anomaly-scoring simulation with:
+
+```bash
+python machine_learning/detect_anomalies.py
+```
+
+Isolation Forest was selected to find unusual combinations of traffic,
+calendar, and weather features without accident labels. It fits on the first
+80% of records and scores the latest 20%, using a documented 2% contamination
+assumption. The 9,638-row holdout contained 243 flagged records (2.5%). The
+saved model, per-record scores, weekly rates, and highest-scoring examples are
+under `machine_learning/models/` and `machine_learning/reports/`.
+
+This technique's value is prioritizing unusual records for review. There are
+no incident labels to validate those flags: an anomaly is not an accident, and
+the holdout rate may reflect seasonality, concept drift, sensor changes, or
+the contamination assumption rather than an operational event rate.
 
 ## Logging
 

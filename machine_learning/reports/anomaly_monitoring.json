@@ -1,0 +1,518 @@
+{
+  "dataset": "python_pipeline/data/processed/traffic_features.csv",
+  "technique": "Isolation Forest",
+  "rationale": "Identify traffic/weather feature combinations that differ from the earlier historical baseline without requiring accident labels.",
+  "split": {
+    "strategy": "chronological",
+    "train_rows": 38549,
+    "test_rows": 9638,
+    "training_end": "2017-11-01T19:00:00",
+    "test_start": "2017-11-01T20:00:00"
+  },
+  "configuration": {
+    "contamination": 0.02,
+    "n_estimators": 200,
+    "random_state": 42
+  },
+  "holdout": {
+    "anomaly_count": 243,
+    "anomaly_rate": 0.02521269973023449,
+    "weekly_rates": [
+      {
+        "week": "2017-10-30/2017-11-05",
+        "records": 145,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2017-11-06/2017-11-12",
+        "records": 169,
+        "anomalies": 1,
+        "anomaly_rate": 0.005917159763313609
+      },
+      {
+        "week": "2017-11-13/2017-11-19",
+        "records": 230,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2017-11-20/2017-11-26",
+        "records": 170,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2017-11-27/2017-12-03",
+        "records": 168,
+        "anomalies": 1,
+        "anomaly_rate": 0.005952380952380952
+      },
+      {
+        "week": "2017-12-04/2017-12-10",
+        "records": 216,
+        "anomalies": 3,
+        "anomaly_rate": 0.013888888888888888
+      },
+      {
+        "week": "2017-12-11/2017-12-17",
+        "records": 216,
+        "anomalies": 7,
+        "anomaly_rate": 0.032407407407407406
+      },
+      {
+        "week": "2017-12-18/2017-12-24",
+        "records": 178,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2017-12-25/2017-12-31",
+        "records": 198,
+        "anomalies": 5,
+        "anomaly_rate": 0.025252525252525252
+      },
+      {
+        "week": "2018-01-01/2018-01-07",
+        "records": 173,
+        "anomalies": 7,
+        "anomaly_rate": 0.04046242774566474
+      },
+      {
+        "week": "2018-01-08/2018-01-14",
+        "records": 227,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-01-15/2018-01-21",
+        "records": 193,
+        "anomalies": 9,
+        "anomaly_rate": 0.046632124352331605
+      },
+      {
+        "week": "2018-01-22/2018-01-28",
+        "records": 213,
+        "anomalies": 1,
+        "anomaly_rate": 0.004694835680751174
+      },
+      {
+        "week": "2018-01-29/2018-02-04",
+        "records": 194,
+        "anomalies": 4,
+        "anomaly_rate": 0.020618556701030927
+      },
+      {
+        "week": "2018-02-05/2018-02-11",
+        "records": 181,
+        "anomalies": 6,
+        "anomaly_rate": 0.03314917127071823
+      },
+      {
+        "week": "2018-02-12/2018-02-18",
+        "records": 175,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-02-19/2018-02-25",
+        "records": 251,
+        "anomalies": 29,
+        "anomaly_rate": 0.11553784860557768
+      },
+      {
+        "week": "2018-02-26/2018-03-04",
+        "records": 190,
+        "anomalies": 1,
+        "anomaly_rate": 0.005263157894736842
+      },
+      {
+        "week": "2018-03-05/2018-03-11",
+        "records": 220,
+        "anomalies": 1,
+        "anomaly_rate": 0.004545454545454545
+      },
+      {
+        "week": "2018-03-12/2018-03-18",
+        "records": 166,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-03-19/2018-03-25",
+        "records": 185,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-03-26/2018-04-01",
+        "records": 211,
+        "anomalies": 1,
+        "anomaly_rate": 0.004739336492890996
+      },
+      {
+        "week": "2018-04-02/2018-04-08",
+        "records": 221,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-04-09/2018-04-15",
+        "records": 287,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-04-16/2018-04-22",
+        "records": 174,
+        "anomalies": 1,
+        "anomaly_rate": 0.005747126436781609
+      },
+      {
+        "week": "2018-04-23/2018-04-29",
+        "records": 168,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-04-30/2018-05-06",
+        "records": 187,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-05-07/2018-05-13",
+        "records": 192,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-05-14/2018-05-20",
+        "records": 190,
+        "anomalies": 1,
+        "anomaly_rate": 0.005263157894736842
+      },
+      {
+        "week": "2018-05-21/2018-05-27",
+        "records": 188,
+        "anomalies": 0,
+        "anomaly_rate": 0.0
+      },
+      {
+        "week": "2018-05-28/2018-06-03",
+        "records": 226,
+        "anomalies": 1,
+        "anomaly_rate": 0.004424778761061947
+      },
+      {
+        "week": "2018-06-04/2018-06-10",
+        "records": 199,
+        "anomalies": 1,
+        "anomaly_rate": 0.005025125628140704
+      },
+      {
+        "week": "2018-06-11/2018-06-17",
+        "records": 197,
+        "anomalies": 1,
+        "anomaly_rate": 0.005076142131979695
+      },
+      {
+        "week": "2018-06-18/2018-06-24",
+        "records": 230,
+        "anomalies": 4,
+        "anomaly_rate": 0.017391304347826087
+      },
+      {
+        "week": "2018-06-25/2018-07-01",
+        "records": 201,
+        "anomalies": 1,
+        "anomaly_rate": 0.004975124378109453
+      },
+      {
+        "week": "2018-07-02/2018-07-08",
+        "records": 180,
+        "anomalies": 1,
+        "anomaly_rate": 0.005555555555555556
+      },
+      {
+        "week": "2018-07-09/2018-07-15",
+        "records": 213,
+        "anomalies": 7,
+        "anomaly_rate": 0.03286384976525822
+      },
+      {
+        "week": "2018-07-16/2018-07-22",
+        "records": 201,
+        "anomalies": 1,
+        "anomaly_rate": 0.004975124378109453
+      },
+      {
+        "week": "2018-07-23/2018-07-29",
+        "records": 186,
+        "anomalies": 1,
+        "anomaly_rate": 0.005376344086021506
+      },
+      {
+        "week": "2018-07-30/2018-08-05",
+        "records": 193,
+        "anomalies": 3,
+        "anomaly_rate": 0.015544041450777202
+      },
+      {
+        "week": "2018-08-06/2018-08-12",
+        "records": 201,
+        "anomalies": 12,
+        "anomaly_rate": 0.05970149253731343
+      },
+      {
+        "week": "2018-08-13/2018-08-19",
+        "records": 180,
+        "anomalies": 14,
+        "anomaly_rate": 0.07777777777777778
+      },
+      {
+        "week": "2018-08-20/2018-08-26",
+        "records": 261,
+        "anomalies": 64,
+        "anomaly_rate": 0.24521072796934865
+      },
+      {
+        "week": "2018-08-27/2018-09-02",
+        "records": 221,
+        "anomalies": 15,
+        "anomaly_rate": 0.06787330316742081
+      },
+      {
+        "week": "2018-09-03/2018-09-09",
+        "records": 239,
+        "anomalies": 18,
+        "anomaly_rate": 0.07531380753138076
+      },
+      {
+        "week": "2018-09-10/2018-09-16",
+        "records": 171,
+        "anomalies": 2,
+        "anomaly_rate": 0.011695906432748537
+      },
+      {
+        "week": "2018-09-17/2018-09-23",
+        "records": 281,
+        "anomalies": 18,
+        "anomaly_rate": 0.06405693950177936
+      },
+      {
+        "week": "2018-09-24/2018-09-30",
+        "records": 182,
+        "anomalies": 1,
+        "anomaly_rate": 0.005494505494505495
+      }
+    ],
+    "most_anomalous_records": [
+      {
+        "date_time": "2018-08-25T21:00:00",
+        "traffic_volume": 3156,
+        "hour": 21,
+        "weather_main": "Mist",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.04047990806492607
+      },
+      {
+        "date_time": "2018-08-25T22:00:00",
+        "traffic_volume": 2713,
+        "hour": 22,
+        "weather_main": "Fog",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.03996340860658032
+      },
+      {
+        "date_time": "2018-08-25T22:00:00",
+        "traffic_volume": 2713,
+        "hour": 22,
+        "weather_main": "Mist",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.03996340860658032
+      },
+      {
+        "date_time": "2018-08-25T23:00:00",
+        "traffic_volume": 2134,
+        "hour": 23,
+        "weather_main": "Fog",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.036207602714249054
+      },
+      {
+        "date_time": "2018-08-25T23:00:00",
+        "traffic_volume": 2134,
+        "hour": 23,
+        "weather_main": "Mist",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.036207602714249054
+      },
+      {
+        "date_time": "2018-09-06T00:00:00",
+        "traffic_volume": 570,
+        "hour": 0,
+        "weather_main": "Mist",
+        "congestion_category": "Low",
+        "anomaly_score": 0.03294955658596943
+      },
+      {
+        "date_time": "2018-01-06T09:00:00",
+        "traffic_volume": 3046,
+        "hour": 9,
+        "weather_main": "Mist",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.03274883561402009
+      },
+      {
+        "date_time": "2018-09-06T07:00:00",
+        "traffic_volume": 6526,
+        "hour": 7,
+        "weather_main": "Mist",
+        "congestion_category": "Severe",
+        "anomaly_score": 0.03182564958759193
+      },
+      {
+        "date_time": "2018-08-27T18:00:00",
+        "traffic_volume": 3629,
+        "hour": 18,
+        "weather_main": "Mist",
+        "congestion_category": "High",
+        "anomaly_score": 0.03151431551756878
+      },
+      {
+        "date_time": "2018-08-24T12:00:00",
+        "traffic_volume": 4971,
+        "hour": 12,
+        "weather_main": "Mist",
+        "congestion_category": "Severe",
+        "anomaly_score": 0.030932775704203608
+      },
+      {
+        "date_time": "2018-01-06T08:00:00",
+        "traffic_volume": 2487,
+        "hour": 8,
+        "weather_main": "Haze",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.030865517530298203
+      },
+      {
+        "date_time": "2018-09-02T10:00:00",
+        "traffic_volume": 3571,
+        "hour": 10,
+        "weather_main": "Mist",
+        "congestion_category": "High",
+        "anomaly_score": 0.030421356029368463
+      },
+      {
+        "date_time": "2018-08-26T09:00:00",
+        "traffic_volume": 3408,
+        "hour": 9,
+        "weather_main": "Mist",
+        "congestion_category": "High",
+        "anomaly_score": 0.03038031315856915
+      },
+      {
+        "date_time": "2018-08-26T00:00:00",
+        "traffic_volume": 1375,
+        "hour": 0,
+        "weather_main": "Mist",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.030162625719190816
+      },
+      {
+        "date_time": "2018-01-06T10:00:00",
+        "traffic_volume": 3593,
+        "hour": 10,
+        "weather_main": "Mist",
+        "congestion_category": "High",
+        "anomaly_score": 0.029965496411841208
+      },
+      {
+        "date_time": "2018-08-26T07:00:00",
+        "traffic_volume": 1657,
+        "hour": 7,
+        "weather_main": "Mist",
+        "congestion_category": "Medium",
+        "anomaly_score": 0.029843565885219747
+      },
+      {
+        "date_time": "2018-09-06T01:00:00",
+        "traffic_volume": 350,
+        "hour": 1,
+        "weather_main": "Mist",
+        "congestion_category": "Low",
+        "anomaly_score": 0.029510336936640846
+      },
+      {
+        "date_time": "2018-09-20T18:00:00",
+        "traffic_volume": 3898,
+        "hour": 18,
+        "weather_main": "Fog",
+        "congestion_category": "High",
+        "anomaly_score": 0.028175997083880522
+      },
+      {
+        "date_time": "2018-09-20T18:00:00",
+        "traffic_volume": 3898,
+        "hour": 18,
+        "weather_main": "Haze",
+        "congestion_category": "High",
+        "anomaly_score": 0.028175997083880522
+      },
+      {
+        "date_time": "2018-09-20T18:00:00",
+        "traffic_volume": 3898,
+        "hour": 18,
+        "weather_main": "Mist",
+        "congestion_category": "High",
+        "anomaly_score": 0.028175997083880522
+      },
+      {
+        "date_time": "2018-01-06T01:00:00",
+        "traffic_volume": 673,
+        "hour": 1,
+        "weather_main": "Mist",
+        "congestion_category": "Low",
+        "anomaly_score": 0.028103543564373945
+      },
+      {
+        "date_time": "2018-02-04T12:00:00",
+        "traffic_volume": 3735,
+        "hour": 12,
+        "weather_main": "Haze",
+        "congestion_category": "High",
+        "anomaly_score": 0.027976252492721954
+      },
+      {
+        "date_time": "2018-09-04T18:00:00",
+        "traffic_volume": 4383,
+        "hour": 18,
+        "weather_main": "Mist",
+        "congestion_category": "High",
+        "anomaly_score": 0.027505543223270146
+      },
+      {
+        "date_time": "2018-09-20T16:00:00",
+        "traffic_volume": 6331,
+        "hour": 16,
+        "weather_main": "Mist",
+        "congestion_category": "Severe",
+        "anomaly_score": 0.027367807465097704
+      },
+      {
+        "date_time": "2018-02-24T06:00:00",
+        "traffic_volume": 1119,
+        "hour": 6,
+        "weather_main": "Mist",
+        "congestion_category": "Low",
+        "anomaly_score": 0.027240764473592582
+      }
+    ]
+  },
+  "limitations": [
+    "No accident or incident ground-truth labels are available; an anomaly is not an accident prediction.",
+    "The model is trained on an earlier period, so a high holdout anomaly rate may reflect seasonality, concept drift, or data-quality changes.",
+    "The 2% contamination setting is a modeling assumption, not a measured incident prevalence."
+  ]
+}
