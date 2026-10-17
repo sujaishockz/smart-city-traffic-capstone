@@ -1,21 +1,4 @@
-2026-10-17 11:34:01,694 INFO __main__ Loaded raw CSV /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/data_analytics/data/Metro_Interstate_Traffic_Volume.csv with 48204 rows and 9 columns
-2026-10-17 11:34:01,694 INFO __main__ Validated raw CSV schema: all 9 required columns are present
-2026-10-17 11:34:01,787 WARNING __main__ Categorical standardization affected 48146 rows: trimmed whitespace, normalized weather labels, and restored the no-holiday sentinel
-2026-10-17 11:34:01,806 INFO __main__ Datetime parsing completed; no rows affected
-2026-10-17 11:34:01,817 INFO __main__ Numeric parsing for temp completed; no rows affected
-2026-10-17 11:34:01,818 INFO __main__ Numeric parsing for rain_1h completed; no rows affected
-2026-10-17 11:34:01,818 INFO __main__ Numeric parsing for snow_1h completed; no rows affected
-2026-10-17 11:34:01,819 INFO __main__ Numeric parsing for clouds_all completed; no rows affected
-2026-10-17 11:34:01,819 INFO __main__ Numeric parsing for traffic_volume completed; no rows affected
-2026-10-17 11:34:01,835 WARNING __main__ Exact duplicate removal affected 17 rows: removed only rows identical across every source column; repeated timestamps with different observations were retained
-2026-10-17 11:34:01,848 WARNING __main__ Physical-range validation for temp affected 10 rows: marked physically impossible sensor readings for monthly median imputation
-2026-10-17 11:34:01,849 WARNING __main__ Physical-range validation for rain_1h affected 1 rows: marked physically impossible sensor readings for monthly median imputation
-2026-10-17 11:34:01,849 INFO __main__ Physical-range validation for snow_1h completed; no rows affected
-2026-10-17 11:34:01,849 INFO __main__ Physical-range validation for clouds_all completed; no rows affected
-2026-10-17 11:34:01,859 INFO __main__ Traffic target validation completed; no rows affected
-2026-10-17 11:34:01,866 WARNING __main__ Monthly median imputation for temp affected 10 rows: filled missing or physically impossible sensor values using that calendar month's median, with a global median fallback
-2026-10-17 11:34:01,870 WARNING __main__ Monthly median imputation for rain_1h affected 1 rows: filled missing or physically impossible sensor values using that calendar month's median, with a global median fallback
-2026-10-17 11:34:01,870 INFO __main__ Monthly median imputation for snow_1h completed; no rows affected
-2026-10-17 11:34:01,870 INFO __main__ Monthly median imputation for clouds_all completed; no rows affected
-2026-10-17 11:34:01,873 INFO __main__ Cleaned dataset contains 48187 rows and 9 columns
-2026-10-17 11:34:02,103 INFO __main__ Saved cleaned dataset to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_cleaned.csv
+2026-10-17 11:36:35,488 INFO __main__ Feature engineering input shape: 48187 rows, 9 columns
+2026-10-17 11:36:35,570 INFO __main__ Feature engineering output shape: 48187 rows, 36 columns
+2026-10-17 11:36:35,570 INFO __main__ Created time, weather, holiday, scaled numeric, and congestion features
+2026-10-17 11:36:36,264 INFO __main__ Saved engineered feature dataset to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_features.csv
