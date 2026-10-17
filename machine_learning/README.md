@@ -1,7 +1,7 @@
 # Machine Learning and AI: Building an Intelligent Mobility Solution
 
-**Status: in progress.** Task 1's supervised benchmark is implemented and
-validated; remaining milestone tasks are listed below.
+**Status: in progress.** Tasks 1 and 2 are implemented and validated; remaining
+milestone tasks are listed below.
 
 ## Planned Folder Structure
 
@@ -13,10 +13,14 @@ machine_learning/
 ├── deployment/            # FastAPI/Flask deployment mock-up
 ├── reports/
 │   ├── bias_fairness/     # Bias & fairness report
+│   ├── cluster_assignments.csv
+│   ├── pattern_analysis.md
+│   ├── pattern_analysis.json
 │   ├── supervised_metrics.json
 │   └── (final capstone report)
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
+├── analyze_patterns.py
 ├── train_supervised.py
 └── README.md
 ```
@@ -86,6 +90,32 @@ Run the focused tests with:
 ```bash
 python -m unittest discover -s machine_learning/tests -v
 ```
+
+## Unsupervised Pattern Analysis (Task 2)
+
+Run from the repository root:
+
+```bash
+python machine_learning/analyze_patterns.py
+```
+
+The script standardizes time, calendar, weather, and traffic-volume features
+before fitting four K-means clusters. It mines up to 20 association rules from
+hour band, weekday/weekend, weather group, and congestion category; defaults
+are minimum support 0.03 and minimum lift 1.2. The cluster model and row-level
+assignments are saved under `machine_learning/models/` and
+`machine_learning/reports/`; JSON and Markdown reports include the profiles,
+rules, thresholds, and limitations.
+
+Across 48,187 records, the largest cluster contained 18,505 weekday records
+with high-volume conditions (mean 5,232 vehicles/hour) and dominant Severe
+congestion. A separate 13,700-record cluster consisted entirely of weekend
+observations with mean traffic volume 2,571. The strongest reported rule links
+weekday Medium congestion with late evening (support 0.098, confidence 0.636,
+lift 3.83). Weekend overnight conditions linked to Low congestion with
+confidence 0.886 and lift 3.54. These describe historical co-occurrences on
+one corridor; neither clusters nor rules imply causation or generalize
+automatically to other roads.
 
 ## Logging
 

@@ -45,7 +45,7 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 
 - [x] Create the quartile-based congestion category and documented proxy accident-risk label; state that it is not actual accident prediction.
 - [x] Task 1: Train at least two classification and two regression algorithms; compare with the specified metrics.
-- [ ] Task 2: Apply K-means clustering and association-rule mining; interpret clusters and high-lift rules.
+- [x] Task 2: Apply K-means clustering and association-rule mining; interpret clusters and high-lift rules.
 - [ ] Task 3: Implement a neural network, LSTM, or CNN and apply SHAP or LIME explainability.
 - [ ] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.
 - [ ] Task 5: Build a travel-timing recommendation using day type and, where useful, weather.

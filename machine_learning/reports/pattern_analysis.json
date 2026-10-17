@@ -1,0 +1,331 @@
+{
+  "dataset": "python_pipeline/data/processed/traffic_features.csv",
+  "clustering": {
+    "algorithm": "KMeans",
+    "clusters": 4,
+    "features": [
+      "hour_sin",
+      "hour_cos",
+      "day_of_week_sin",
+      "day_of_week_cos",
+      "is_weekend",
+      "holiday_flag",
+      "temp_scaled",
+      "rain_1h_scaled",
+      "snow_1h_scaled",
+      "clouds_all_scaled",
+      "traffic_volume"
+    ],
+    "inertia": 342997.6736075621,
+    "profiles": [
+      {
+        "cluster": 0,
+        "records": 13700,
+        "share": 0.2843090460082595,
+        "traffic_level": "moderate-volume",
+        "mean_traffic_volume": 2570.699635036496,
+        "median_traffic_volume": 2674.0,
+        "mean_hour": 11.363284671532847,
+        "weekend_share": 1.0,
+        "dominant_weather": "Clouds",
+        "dominant_congestion": "High",
+        "interpretation": "moderate-volume conditions centered near hour 11.4, most often High congestion with Clouds weather."
+      },
+      {
+        "cluster": 1,
+        "records": 15921,
+        "share": 0.33040031543777365,
+        "traffic_level": "moderate-volume",
+        "mean_traffic_volume": 1568.88034671189,
+        "median_traffic_volume": 1139.0,
+        "mean_hour": 10.780792663777401,
+        "weekend_share": 0.0,
+        "dominant_weather": "Clear",
+        "dominant_congestion": "Low",
+        "interpretation": "moderate-volume conditions centered near hour 10.8, most often Low congestion with Clear weather."
+      },
+      {
+        "cluster": 2,
+        "records": 61,
+        "share": 0.001265901591715608,
+        "traffic_level": "low-volume",
+        "mean_traffic_volume": 865.4426229508197,
+        "median_traffic_volume": 812.0,
+        "mean_hour": 0.0,
+        "weekend_share": 0.0,
+        "dominant_weather": "Clear",
+        "dominant_congestion": "Low",
+        "interpretation": "low-volume conditions centered near hour 0.0, most often Low congestion with Clear weather."
+      },
+      {
+        "cluster": 3,
+        "records": 18505,
+        "share": 0.38402473696225126,
+        "traffic_level": "high-volume",
+        "mean_traffic_volume": 5232.191191569846,
+        "median_traffic_volume": 5207.0,
+        "mean_hour": 11.991623885436368,
+        "weekend_share": 0.0,
+        "dominant_weather": "Clouds",
+        "dominant_congestion": "Severe",
+        "interpretation": "high-volume conditions centered near hour 12.0, most often Severe congestion with Clouds weather."
+      }
+    ]
+  },
+  "association_rules": {
+    "transaction_fields": [
+      "hour_band",
+      "day_type",
+      "weather_category",
+      "congestion_category"
+    ],
+    "minimum_support": 0.03,
+    "minimum_lift": 1.2,
+    "rules_returned": 20,
+    "top_rules": [
+      {
+        "antecedents": [
+          "congestion_category_Medium",
+          "day_type_weekday"
+        ],
+        "consequents": [
+          "hour_band_late_evening"
+        ],
+        "support": 0.09811774960051466,
+        "confidence": 0.6362535324989907,
+        "lift": 3.8347903652944177
+      },
+      {
+        "antecedents": [
+          "hour_band_late_evening"
+        ],
+        "consequents": [
+          "congestion_category_Medium",
+          "day_type_weekday"
+        ],
+        "support": 0.09811774960051466,
+        "confidence": 0.5913696060037523,
+        "lift": 3.8347903652944173
+      },
+      {
+        "antecedents": [
+          "congestion_category_Medium",
+          "weather_category_clear"
+        ],
+        "consequents": [
+          "hour_band_late_evening"
+        ],
+        "support": 0.04436881316537655,
+        "confidence": 0.5947148817802503,
+        "lift": 3.584431020430885
+      },
+      {
+        "antecedents": [
+          "hour_band_late_evening"
+        ],
+        "consequents": [
+          "congestion_category_Medium",
+          "weather_category_clear"
+        ],
+        "support": 0.04436881316537655,
+        "confidence": 0.2674171357098186,
+        "lift": 3.5844310204308845
+      },
+      {
+        "antecedents": [
+          "day_type_weekend",
+          "hour_band_overnight"
+        ],
+        "consequents": [
+          "congestion_category_Low"
+        ],
+        "support": 0.06441571378172536,
+        "confidence": 0.8860976306023409,
+        "lift": 3.5443169690242384
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low"
+        ],
+        "consequents": [
+          "day_type_weekend",
+          "hour_band_overnight"
+        ],
+        "support": 0.06441571378172536,
+        "confidence": 0.25765750809330124,
+        "lift": 3.5443169690242384
+      },
+      {
+        "antecedents": [
+          "congestion_category_Medium",
+          "weather_category_cloudy"
+        ],
+        "consequents": [
+          "hour_band_late_evening"
+        ],
+        "support": 0.043538713760972875,
+        "confidence": 0.5861972618049734,
+        "lift": 3.5330941156468114
+      },
+      {
+        "antecedents": [
+          "hour_band_late_evening"
+        ],
+        "consequents": [
+          "congestion_category_Medium",
+          "weather_category_cloudy"
+        ],
+        "support": 0.043538713760972875,
+        "confidence": 0.26241400875547216,
+        "lift": 3.5330941156468114
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low",
+          "day_type_weekday"
+        ],
+        "consequents": [
+          "hour_band_overnight"
+        ],
+        "support": 0.15190819100587297,
+        "confidence": 0.8989315976912687,
+        "lift": 3.5271408596978393
+      },
+      {
+        "antecedents": [
+          "hour_band_overnight"
+        ],
+        "consequents": [
+          "congestion_category_Low",
+          "day_type_weekday"
+        ],
+        "support": 0.15190819100587297,
+        "confidence": 0.5960426675352171,
+        "lift": 3.5271408596978393
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low",
+          "weather_category_clear"
+        ],
+        "consequents": [
+          "hour_band_overnight"
+        ],
+        "support": 0.06958308257413826,
+        "confidence": 0.8823684210526317,
+        "lift": 3.462151869168892
+      },
+      {
+        "antecedents": [
+          "hour_band_overnight"
+        ],
+        "consequents": [
+          "congestion_category_Low",
+          "weather_category_clear"
+        ],
+        "support": 0.06958308257413826,
+        "confidence": 0.27302336943245664,
+        "lift": 3.462151869168892
+      },
+      {
+        "antecedents": [
+          "hour_band_overnight",
+          "weather_category_cloudy"
+        ],
+        "consequents": [
+          "congestion_category_Low"
+        ],
+        "support": 0.04922489468113807,
+        "confidence": 0.8526240115025162,
+        "lift": 3.410425271210405
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low"
+        ],
+        "consequents": [
+          "hour_band_overnight",
+          "weather_category_cloudy"
+        ],
+        "support": 0.04922489468113807,
+        "confidence": 0.1968954926537727,
+        "lift": 3.4104252712104044
+      },
+      {
+        "antecedents": [
+          "hour_band_overnight",
+          "weather_category_clear"
+        ],
+        "consequents": [
+          "congestion_category_Low"
+        ],
+        "support": 0.06958308257413826,
+        "confidence": 0.8512312769738513,
+        "lift": 3.4048544487041563
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low"
+        ],
+        "consequents": [
+          "hour_band_overnight",
+          "weather_category_clear"
+        ],
+        "support": 0.06958308257413826,
+        "confidence": 0.27832655432887854,
+        "lift": 3.404854448704156
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low"
+        ],
+        "consequents": [
+          "hour_band_overnight"
+        ],
+        "support": 0.2163239047875983,
+        "confidence": 0.8652776624885863,
+        "lift": 3.395092803707964
+      },
+      {
+        "antecedents": [
+          "hour_band_overnight"
+        ],
+        "consequents": [
+          "congestion_category_Low"
+        ],
+        "support": 0.2163239047875983,
+        "confidence": 0.8487908150802052,
+        "lift": 3.395092803707964
+      },
+      {
+        "antecedents": [
+          "congestion_category_Low"
+        ],
+        "consequents": [
+          "hour_band_overnight",
+          "weather_category_adverse"
+        ],
+        "support": 0.097515927532322,
+        "confidence": 0.3900556155059351,
+        "lift": 3.3805053856806646
+      },
+      {
+        "antecedents": [
+          "hour_band_overnight",
+          "weather_category_adverse"
+        ],
+        "consequents": [
+          "congestion_category_Low"
+        ],
+        "support": 0.097515927532322,
+        "confidence": 0.8451438848920864,
+        "lift": 3.380505385680664
+      }
+    ]
+  },
+  "limitations": [
+    "Clusters are descriptive groups, not causal or predictive classes.",
+    "Association rules describe co-occurrence in this single-corridor dataset and do not imply causality.",
+    "The congestion categories were derived in the Part 2 feature pipeline from this dataset."
+  ]
+}
