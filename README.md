@@ -48,7 +48,7 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 2: Apply K-means clustering and association-rule mining; interpret clusters and high-lift rules.
 - [x] Task 3: Implement a neural network, LSTM, or CNN and apply SHAP or LIME explainability.
 - [x] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.
-- [ ] Task 5: Build a travel-timing recommendation using day type and, where useful, weather.
+- [x] Task 5: Build a travel-timing recommendation using day type and, where useful, weather.
 - [ ] Task 6.1: Document model versions and performance.
 - [ ] Task 6.2: Track experiments, parameters, metrics, and model versions with MLflow.
 - [ ] Task 6.3: Create a FastAPI or Flask deployment simulation serving at least one model.

@@ -1,6 +1,6 @@
 # Machine Learning and AI: Building an Intelligent Mobility Solution
 
-**Status: in progress.** Tasks 1 through 4 are implemented and validated; remaining
+**Status: in progress.** Tasks 1 through 5 are implemented and validated; remaining
 milestone tasks are listed below.
 
 ## Planned Folder Structure
@@ -21,12 +21,15 @@ machine_learning/
 │   ├── anomaly_detection.md
 │   ├── anomaly_monitoring.json
 │   ├── anomaly_scores.csv
+│   ├── travel_recommendations.md
+│   ├── travel_recommendations.json
 │   ├── supervised_metrics.json
 │   └── (final capstone report)
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
 ├── analyze_patterns.py
 ├── detect_anomalies.py
+├── recommend_travel_time.py
 ├── train_neural_explainer.py
 ├── train_supervised.py
 └── README.md
@@ -164,6 +167,24 @@ This technique's value is prioritizing unusual records for review. There are
 no incident labels to validate those flags: an anomaly is not an accident, and
 the holdout rate may reflect seasonality, concept drift, sensor changes, or
 the contamination assumption rather than an operational event rate.
+
+## Travel-Timing Recommendations (Task 5)
+
+Generate the report for weekday/weekend and the three most common weather
+conditions, or request a specific recommendation:
+
+```bash
+python machine_learning/recommend_travel_time.py --report
+python machine_learning/recommend_travel_time.py --day-type weekend --weather Clear --month 6
+```
+
+The recommender loads the Task 1 traffic-volume regressor, supplies median
+historical numeric weather measurements for the requested weather class, and
+ranks non-overlapping two-hour windows. For a June weekend with Clear weather,
+the top estimated window is 03:00-05:00 at about 452 vehicles/hour. The report
+includes the historical support count and can be regenerated for a different
+month. Results are based on 2012-2018 corridor data, assume a non-holiday, and
+are not real-time forecasts or route recommendations.
 
 ## Logging
 

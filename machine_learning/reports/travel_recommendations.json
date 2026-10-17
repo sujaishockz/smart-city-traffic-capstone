@@ -1,0 +1,128 @@
+[
+  {
+    "day_type": "weekday",
+    "weather": "Clouds",
+    "month": 6,
+    "weather_history_records": 15158,
+    "model": "hist_gradient_boosting traffic-volume regressor",
+    "windows": [
+      {
+        "window": "02:00-04:00",
+        "mean_predicted_traffic": 374.72871717161195
+      },
+      {
+        "window": "00:00-02:00",
+        "mean_predicted_traffic": 570.1594739910588
+      },
+      {
+        "window": "04:00-06:00",
+        "mean_predicted_traffic": 1840.8449474286372
+      }
+    ]
+  },
+  {
+    "day_type": "weekday",
+    "weather": "Clear",
+    "month": 6,
+    "weather_history_records": 13384,
+    "model": "hist_gradient_boosting traffic-volume regressor",
+    "windows": [
+      {
+        "window": "02:00-04:00",
+        "mean_predicted_traffic": 386.2366251210028
+      },
+      {
+        "window": "00:00-02:00",
+        "mean_predicted_traffic": 569.6477816569566
+      },
+      {
+        "window": "04:00-06:00",
+        "mean_predicted_traffic": 1821.7236372152997
+      }
+    ]
+  },
+  {
+    "day_type": "weekday",
+    "weather": "Mist",
+    "month": 6,
+    "weather_history_records": 5949,
+    "model": "hist_gradient_boosting traffic-volume regressor",
+    "windows": [
+      {
+        "window": "02:00-04:00",
+        "mean_predicted_traffic": 351.5826168739675
+      },
+      {
+        "window": "00:00-02:00",
+        "mean_predicted_traffic": 518.2257342987045
+      },
+      {
+        "window": "22:00-24:00",
+        "mean_predicted_traffic": 1751.4395258764046
+      }
+    ]
+  },
+  {
+    "day_type": "weekend",
+    "weather": "Clouds",
+    "month": 6,
+    "weather_history_records": 15158,
+    "model": "hist_gradient_boosting traffic-volume regressor",
+    "windows": [
+      {
+        "window": "03:00-05:00",
+        "mean_predicted_traffic": 437.2254148323665
+      },
+      {
+        "window": "01:00-03:00",
+        "mean_predicted_traffic": 729.6993386819165
+      },
+      {
+        "window": "05:00-07:00",
+        "mean_predicted_traffic": 953.2719308216945
+      }
+    ]
+  },
+  {
+    "day_type": "weekend",
+    "weather": "Clear",
+    "month": 6,
+    "weather_history_records": 13384,
+    "model": "hist_gradient_boosting traffic-volume regressor",
+    "windows": [
+      {
+        "window": "03:00-05:00",
+        "mean_predicted_traffic": 452.12044908183714
+      },
+      {
+        "window": "01:00-03:00",
+        "mean_predicted_traffic": 750.2551516820743
+      },
+      {
+        "window": "05:00-07:00",
+        "mean_predicted_traffic": 977.663409359576
+      }
+    ]
+  },
+  {
+    "day_type": "weekend",
+    "weather": "Mist",
+    "month": 6,
+    "weather_history_records": 5949,
+    "model": "hist_gradient_boosting traffic-volume regressor",
+    "windows": [
+      {
+        "window": "03:00-05:00",
+        "mean_predicted_traffic": 416.82051399929753
+      },
+      {
+        "window": "01:00-03:00",
+        "mean_predicted_traffic": 703.1053616851295
+      },
+      {
+        "window": "05:00-07:00",
+        "mean_predicted_traffic": 920.8420437389808
+      }
+    ]
+  }
+]
