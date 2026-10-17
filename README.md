@@ -16,6 +16,47 @@ connected parts that build on one another:
 | [`python_pipeline/`](python_pipeline/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
 | [`machine_learning/`](machine_learning/) | Supervised/unsupervised ML, deep learning, explainability, MLOps, recommendations | ⚪ Not started |
 
+## Capstone Progress Checklist
+
+Update this checklist after each task is validated, committed, and pushed. Complete the milestones in order: Data Analytics, Python Pipeline, then Machine Learning and AI.
+
+### Milestone 1: Data Analytics — Complete
+
+- [x] Task 1.1: Load the CSV into SQLite and verify the loaded data.
+- [x] Task 1.2: Analyze 2012–2017 annual traffic trends, year-over-year changes, and observations.
+- [x] Task 1.3: Compare New Year's Day and Labor Day temperatures for 2015–2017 and discuss traffic context.
+- [x] Task 2.1: Calculate and interpret traffic mean, median, standard deviation, variance, and range.
+- [x] Task 2.2: Calculate and interpret temperature/traffic correlation; explain correlation versus causation.
+- [x] Task 3: Calculate congestion/weather probabilities, conditional probabilities, independence comparison, and odds ratio.
+- [x] Task 4.1: Prepare Power Query fields, check data quality/types, and create hour, Celsius temperature, and traffic category.
+- [x] Task 4.2: Build daily, hourly, weather, and temperature/traffic dashboard visuals.
+- [x] Task 4.3: Add KPI cards and hour, weather, and traffic-category slicers.
+- [x] Deliver the SQLite/SQL work, Power BI dashboard, and 1–2 page insights report.
+
+### Milestone 2: Python Data Pipeline — Complete
+
+- [x] Task 1: Load and schema-validate the raw CSV; clean categories, timestamps, duplicates, and impossible values with logged handling.
+- [x] Task 2: Engineer time/weather features, cyclical encodings, scaled numeric features, and quartile-based congestion categories.
+- [x] Task 3: Save at least three Matplotlib visualizations with written interpretations.
+- [x] Task 4: Provide at least three CLI queries, command/argument logging, and graceful invalid-input handling.
+- [x] Task 5: Document setup, run steps, logging, and reproducibility; include pinned dependencies, sample log, and methodology/findings report.
+
+### Milestone 3: Machine Learning and AI — Not Started
+
+- [ ] Create the quartile-based congestion category and documented proxy accident-risk label; state that it is not actual accident prediction.
+- [ ] Task 1: Train at least two classification and two regression algorithms; compare with the specified metrics.
+- [ ] Task 2: Apply K-means clustering and association-rule mining; interpret clusters and high-lift rules.
+- [ ] Task 3: Implement a neural network, LSTM, or CNN and apply SHAP or LIME explainability.
+- [ ] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.
+- [ ] Task 5: Build a travel-timing recommendation using day type and, where useful, weather.
+- [ ] Task 6.1: Document model versions and performance.
+- [ ] Task 6.2: Track experiments, parameters, metrics, and model versions with MLflow.
+- [ ] Task 6.3: Create a FastAPI or Flask deployment simulation serving at least one model.
+- [ ] Task 6.4: Simulate prediction-error or feature-distribution drift monitoring.
+- [ ] Task 6.5: Report monitoring status as PASS/Normal or ALERT/Requires investigation.
+- [ ] Task 7: Complete bias/fairness, governance, and sustainability analysis.
+- [ ] Final deliverables: models, notebooks/scripts, MLflow evidence, deployment and recommendation components, final report, fairness report, and README.
+
 ## Repository Structure
 
 ```
