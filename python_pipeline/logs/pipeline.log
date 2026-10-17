@@ -1,5 +1,31 @@
-2026-10-17 11:43:07,541 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_by_hour_and_day_type.png
-2026-10-17 11:43:07,747 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/average_traffic_by_weather.png
-2026-10-17 11:43:08,156 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/temperature_vs_traffic.png
-2026-10-17 11:43:08,375 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_volume_distribution.png
-2026-10-17 11:43:08,378 INFO __main__ Saved visualization interpretations to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/reports/visualization_interpretations.md
+2026-10-17 11:45:31,042 INFO __main__ Loaded raw CSV /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/data_analytics/data/Metro_Interstate_Traffic_Volume.csv with 48204 rows and 9 columns
+2026-10-17 11:45:31,043 INFO __main__ Validated raw CSV schema: all 9 required columns are present
+2026-10-17 11:45:31,136 WARNING __main__ Categorical standardization affected 48146 rows: trimmed whitespace, normalized weather labels, and restored the no-holiday sentinel
+2026-10-17 11:45:31,154 INFO __main__ Datetime parsing completed; no rows affected
+2026-10-17 11:45:31,165 INFO __main__ Numeric parsing for temp completed; no rows affected
+2026-10-17 11:45:31,166 INFO __main__ Numeric parsing for rain_1h completed; no rows affected
+2026-10-17 11:45:31,167 INFO __main__ Numeric parsing for snow_1h completed; no rows affected
+2026-10-17 11:45:31,168 INFO __main__ Numeric parsing for clouds_all completed; no rows affected
+2026-10-17 11:45:31,169 INFO __main__ Numeric parsing for traffic_volume completed; no rows affected
+2026-10-17 11:45:31,190 WARNING __main__ Exact duplicate removal affected 17 rows: removed only rows identical across every source column; repeated timestamps with different observations were retained
+2026-10-17 11:45:31,202 WARNING __main__ Physical-range validation for temp affected 10 rows: marked physically impossible sensor readings for monthly median imputation
+2026-10-17 11:45:31,202 WARNING __main__ Physical-range validation for rain_1h affected 1 rows: marked physically impossible sensor readings for monthly median imputation
+2026-10-17 11:45:31,202 INFO __main__ Physical-range validation for snow_1h completed; no rows affected
+2026-10-17 11:45:31,203 INFO __main__ Physical-range validation for clouds_all completed; no rows affected
+2026-10-17 11:45:31,211 INFO __main__ Traffic target validation completed; no rows affected
+2026-10-17 11:45:31,220 WARNING __main__ Monthly median imputation for temp affected 10 rows: filled missing or physically impossible sensor values using that calendar month's median, with a global median fallback
+2026-10-17 11:45:31,223 WARNING __main__ Monthly median imputation for rain_1h affected 1 rows: filled missing or physically impossible sensor values using that calendar month's median, with a global median fallback
+2026-10-17 11:45:31,224 INFO __main__ Monthly median imputation for snow_1h completed; no rows affected
+2026-10-17 11:45:31,224 INFO __main__ Monthly median imputation for clouds_all completed; no rows affected
+2026-10-17 11:45:31,226 INFO __main__ Cleaned dataset contains 48187 rows and 9 columns
+2026-10-17 11:45:31,462 INFO __main__ Saved cleaned dataset to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_cleaned.csv
+2026-10-17 11:45:31,983 INFO __main__ Feature engineering input shape: 48187 rows, 9 columns
+2026-10-17 11:45:32,083 INFO __main__ Feature engineering output shape: 48187 rows, 36 columns
+2026-10-17 11:45:32,083 INFO __main__ Created time, weather, holiday, scaled numeric, and congestion features
+2026-10-17 11:45:32,849 INFO __main__ Saved engineered feature dataset to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_features.csv
+2026-10-17 11:45:34,152 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_by_hour_and_day_type.png
+2026-10-17 11:45:34,359 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/average_traffic_by_weather.png
+2026-10-17 11:45:34,770 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/temperature_vs_traffic.png
+2026-10-17 11:45:34,991 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_volume_distribution.png
+2026-10-17 11:45:34,994 INFO __main__ Saved visualization interpretations to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/reports/visualization_interpretations.md
+2026-10-17 11:45:35,504 INFO __main__ CLI command=compare-days arguments={'data': PosixPath('/Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_features.csv'), 'command': 'compare-days'}

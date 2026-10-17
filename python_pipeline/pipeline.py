@@ -44,13 +44,13 @@ NUMERIC_COLUMNS = (
 MONTHLY_IMPUTE_COLUMNS = ("temp", "rain_1h", "snow_1h", "clouds_all")
 
 
-def configure_logging(level: int = logging.INFO) -> None:
+def configure_logging(level: int = logging.INFO, append: bool = False) -> None:
     """Configure console and file handlers for an executable entry point."""
     LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
     logging.basicConfig(
         level=level,
         format="%(asctime)s %(levelname)s %(name)s %(message)s",
-        handlers=[logging.StreamHandler(), logging.FileHandler(LOG_PATH, mode="w")],
+        handlers=[logging.StreamHandler(), logging.FileHandler(LOG_PATH, mode="a" if append else "w")],
         force=True,
     )
 

@@ -12,8 +12,8 @@ connected parts that build on one another:
 
 | Folder | Focus | Status |
 |---|---|---|
-| [`data_analytics/`](data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | 🟡 In progress (SQL analysis started) |
-| [`python_pipeline/`](python_pipeline/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ⚪ Not started |
+| [`data_analytics/`](data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | ✅ Complete |
+| [`python_pipeline/`](python_pipeline/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
 | [`machine_learning/`](machine_learning/) | Supervised/unsupervised ML, deep learning, explainability, MLOps, recommendations | ⚪ Not started |
 
 ## Repository Structure
@@ -31,8 +31,11 @@ smart-city-traffic-capstone/
 │   ├── feature_engineering.py # ML-ready feature creation
 │   ├── visualizations.py      # Matplotlib charts
 │   ├── mini_app/              # CLI analytics application
-│   ├── figures/               # Saved charts
-│   ├── logs/                  # pipeline.log sample output
+│   ├── data/processed/        # Cleaned and engineered CSV outputs
+│   ├── figures/               # Four saved charts
+│   ├── logs/                  # End-to-end pipeline.log sample output
+│   ├── reports/               # Part 2 findings and figure interpretations
+│   └── requirements.txt       # Pinned Python dependencies
 │   └── README.md
 ├── machine_learning/
 │   ├── notebooks/             # EDA / modelling notebooks
@@ -55,7 +58,7 @@ smart-city-traffic-capstone/
 
 Each part has its own README with detailed run instructions:
 - [Data Analytics](data_analytics/README.md)
-- Python Pipeline (added once that work begins)
+- [Python Pipeline](python_pipeline/README.md)
 - Machine Learning (added once that work begins)
 
 ## Logging Configuration

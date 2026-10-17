@@ -1,53 +1,111 @@
-# Python Pipeline: Building a Reproducible Traffic Analytics Pipeline
+# Python Pipeline: Reproducible Traffic Analytics
 
-**Status: not started.** This folder is scaffolded so the structure exists
-from the first commit; files will be filled in one piece at a time, each as
-its own commit.
+**Status: complete.** This part cleans the official Metro Interstate Traffic
+Volume CSV, engineers analysis-ready features, creates figures, and provides a
+command-line traffic analytics application.
 
-## Planned Folder Structure
+## Project Structure
 
-```
+```text
 python_pipeline/
-├── pipeline.py               # load, validate, clean (with logging)
-├── feature_engineering.py    # NumPy/Pandas feature creation
-├── visualizations.py         # Matplotlib charts
-├── mini_app/                 # CLI analytics application
-├── figures/                  # Output charts from visualizations.py
-├── logs/
-│   └── pipeline_sample.log   # Sample log output for graders
-└── README.md
+├── data/processed/
+│   ├── traffic_cleaned.csv
+│   └── traffic_features.csv
+├── figures/                         # Four generated Matplotlib figures
+├── logs/pipeline.log                # Successful end-to-end sample log
+├── mini_app/traffic_cli.py          # Four query commands
+├── reports/
+│   ├── part2_methodology_and_findings.md
+│   └── visualization_interpretations.md
+├── feature_engineering.py
+├── pipeline.py
+├── requirements.txt
+└── visualizations.py
 ```
 
-## Planned Work
+The original CSV remains unchanged at
+`data_analytics/data/Metro_Interstate_Traffic_Volume.csv`. Generated datasets
+are written under `python_pipeline/data/processed/`.
 
-1. **Data Pipeline (`pipeline.py`)** — load CSV, validate schema, standardise
-   categorical values, parse/validate datetimes, remove duplicates, detect
-   and impute outliers (e.g. 0K temperature readings, implausible rain
-   values) using conditionals/loops where group-by-group logic is needed
-   (e.g. monthly medians). Every step logged separately via
-   `logging.getLogger(__name__)`.
-2. **Feature Engineering (`feature_engineering.py`)** — hour, day-of-week,
-   weekend flag, cyclical encodings, weather encodings, scaled numeric
-   features, data-driven congestion category. Shape logged before/after;
-   intermediate thresholds logged at DEBUG.
-3. **Visualisations (`visualizations.py`)** — at least 3 Matplotlib charts
-   with interpretations, each save logged at INFO with its file path.
-4. **Mini CLI App (`mini_app/`)** — at least 3 query commands over the
-   processed dataset, with INFO logs of command+args and ERROR logs (not raw
-   tracebacks) for invalid input.
-5. **GitHub & Reproducibility** — incremental commits per piece of work, this
-   README kept up to date with how to run everything and the logging
-   configuration.
+## Setup
 
-## Logging Configuration (to be implemented)
+From the repository root, create and activate a virtual environment, then
+install the pinned dependencies:
 
-- `logging.getLogger(__name__)` in every module — no bare root logger.
-- Handler configured only in the entry-point script(s): writes to console
-  **and** `logs/pipeline.log`.
-- Formatter: timestamp, level, module name, message.
-- DEBUG = internal-only values · INFO = milestones · WARNING = recoverable
-  data issues · ERROR = pipeline-stopping failures (`exc_info=True`).
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r python_pipeline/requirements.txt
+```
 
-## How to Run
+On Windows, activate with `.venv\\Scripts\\activate` instead.
 
-_To be added once `pipeline.py` exists._
+## Run the Workflow
+
+Run each stage from the repository root, in order:
+
+```bash
+python python_pipeline/pipeline.py
+python python_pipeline/feature_engineering.py
+python python_pipeline/visualizations.py
+```
+
+Optional `--input` and `--output` arguments are available on the pipeline and
+feature-engineering scripts. The visualization script accepts `--input`,
+`--output-dir`, and `--report`. Each script also accepts `--debug` to include
+intermediate calculations where applicable.
+
+The pipeline validates the required schema before transformations, standardizes
+categories, parses timestamps, removes exact duplicate rows, validates physical
+sensor ranges, and imputes invalid sensor readings with calendar-month medians.
+Repeated timestamps with differing observations are retained. The raw CSV is
+never overwritten.
+
+Feature engineering adds hour, weekday, weekend and holiday flags, cyclical time
+encodings, one-hot weather categories, weather indicators, min-max scaled
+continuous fields, and a four-level congestion category derived from traffic
+volume quartiles.
+
+The visualization step creates four PNGs in `figures/` and writes their
+interpretations to `reports/visualization_interpretations.md`.
+
+## Mini-App
+
+Run commands from the repository root:
+
+```bash
+python python_pipeline/mini_app/traffic_cli.py lookup '2017-01-01 08:00:00'
+python python_pipeline/mini_app/traffic_cli.py high-traffic --limit 10
+python python_pipeline/mini_app/traffic_cli.py compare-days
+python python_pipeline/mini_app/traffic_cli.py recommend --day-type weekday --weather Clear
+```
+
+The recommendation identifies low-traffic **times** for the single I-94
+corridor; it does not select a route. Datetime input must use
+`YYYY-MM-DD HH:MM:SS`. Invalid values are reported as logged errors without a
+traceback.
+
+## Logging
+
+Every module uses `logging.getLogger(__name__)`. Executable entry points
+configure console and file handlers with a formatter containing timestamp,
+level, module, and message. A pipeline run starts a fresh
+`logs/pipeline.log`; feature engineering, visualization, and CLI runs append to
+that log so an end-to-end run preserves the complete event trail.
+
+- `DEBUG`: intermediate values such as scaling ranges and quartile thresholds.
+- `INFO`: input/output shapes, successful stages, commands, and saved figures.
+- `WARNING`: changed, dropped, or imputed records and recoverable data issues.
+- `ERROR`: a failed stage or invalid user request.
+
+`print()` is used only for results returned to the CLI user, not for internal
+progress reporting.
+
+## Report and Limitations
+
+See [the Part 2 methodology and findings report](reports/part2_methodology_and_findings.md)
+for the cleaning policy, observed patterns, and interpretation limits. The
+provided traffic sensor dataset has repeated timestamps and uneven year
+coverage; weather averages are descriptive, and the engineered min-max scaling
+is computed on this dataset. For predictive evaluation, fit scaling parameters
+on training data only to avoid information leakage.

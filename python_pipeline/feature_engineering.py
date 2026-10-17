@@ -126,7 +126,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, default=FEATURE_OUTPUT, help="Path for engineered feature CSV")
     parser.add_argument("--debug", action="store_true", help="Enable DEBUG-level logging")
     args = parser.parse_args(argv)
-    configure_logging(logging.DEBUG if args.debug else logging.INFO)
+    configure_logging(logging.DEBUG if args.debug else logging.INFO, append=True)
 
     try:
         data = pd.read_csv(args.input)

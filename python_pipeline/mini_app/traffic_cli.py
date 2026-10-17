@@ -151,7 +151,7 @@ def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s %(message)s",
-        handlers=[logging.StreamHandler(), logging.FileHandler(LOG_PATH, mode="w")],
+        handlers=[logging.StreamHandler(), logging.FileHandler(LOG_PATH, mode="a")],
         force=True,
     )
     parser = _build_parser()

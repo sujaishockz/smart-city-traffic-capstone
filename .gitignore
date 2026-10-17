@@ -26,7 +26,6 @@ desktop.ini
 
 # ===== Logs (keep sample logs, ignore noisy full-run logs) =====
 *.log
-!python_pipeline/logs/pipeline_sample.log
 !python_pipeline/logs/pipeline.log
 
 # ===== MLflow =====
