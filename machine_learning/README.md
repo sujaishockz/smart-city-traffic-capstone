@@ -7,12 +7,15 @@ final Part 3 report and fairness/governance report are included.
 
 ```
 machine_learning/
-├── notebooks/             # EDA and modelling notebooks
-├── models/                # Selected Task 1 model artifacts
+├── notebooks/             # Reserved scaffold; current workflows are scripts
+├── models/                # Trained classifiers, regressors, clusterers and detector
 ├── mlruns/                # MLflow tracking data (gitignored — see .gitignore)
-├── deployment/            # FastAPI model-serving simulation
+├── deployment/
+│   └── app.py              # FastAPI model-serving simulation
 ├── reports/
-│   ├── bias_fairness/     # Bias & fairness report
+│   ├── bias_fairness/
+│   │   ├── bias_fairness_governance_sustainability.md
+│   │   └── bias_fairness_metrics.json
 │   ├── cluster_assignments.csv
 │   ├── pattern_analysis.md
 │   ├── pattern_analysis.json
@@ -27,11 +30,8 @@ machine_learning/
 │   ├── mlflow_evidence.json
 │   ├── drift_monitoring.md
 │   ├── drift_monitoring.json
-│   ├── part3_final_report.md
-│   │   ├── bias_fairness_governance_sustainability.md
-│   │   └── bias_fairness_metrics.json
 │   ├── supervised_metrics.json
-│   └── (final capstone report)
+│   └── part3_final_report.md
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
 ├── analyze_patterns.py
@@ -48,13 +48,13 @@ machine_learning/
 ## Important Note — No Accident Dataset
 
 No accident dataset was provided for this capstone. The classification task
-uses a **documented proxy accident-risk label**: a record is flagged
-`high_risk` when High/Severe congestion (top 2 quartiles of `traffic_volume`)
-coincides with severe or low-visibility weather. This proxy demonstrates the
-ML classification workflow only and must not be interpreted as a real
-accident-risk prediction — this will be stated explicitly in the final report.
+uses the documented `high_risk_proxy`: a record is positive when its
+training-threshold congestion category is High/Severe (the upper half of
+traffic volumes) and observed weather is adverse or low-visibility. The label
+demonstrates an ML workflow only; it is not a real accident-risk prediction.
+See the completed Part 3 final report for the definition and limitations.
 
-## Planned Tasks
+## Milestone Tasks
 
 1. Supervised ML — classification (proxy accident risk) + regression
    (traffic volume), 2 algorithms each, compared on standard metrics.
@@ -225,6 +225,15 @@ uvicorn machine_learning.deployment.app:app --host 127.0.0.1 --port 8000
 `GET /health` reports the served version. `POST /predict` serves the saved
 traffic-volume regressor and validates hour, calendar, weather, and month
 inputs. This is a local demonstration, not a production deployment.
+
+In another terminal, check the health response and submit a sample prediction:
+
+```bash
+curl http://127.0.0.1:8000/health
+curl -X POST http://127.0.0.1:8000/predict \
+   -H 'Content-Type: application/json' \
+   -d '{"hour":8,"day_of_week":1,"is_weekend":0,"holiday_flag":0,"month":6,"temp":290,"rain_1h":0,"snow_1h":0,"clouds_all":25,"weather_main":"Clear"}'
+```
 
 ### Drift Monitoring
 

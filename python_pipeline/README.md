@@ -85,6 +85,22 @@ corridor; it does not select a route. Datetime input must use
 `YYYY-MM-DD HH:MM:SS`. Invalid values are reported as logged errors without a
 traceback.
 
+## End-to-End Verification
+
+From the repository root, run the three workflow commands in order under
+[Run the Workflow](#run-the-workflow), then check that both processed CSVs have
+48,187 records and that four PNG files and the interpretation report were
+generated. Exercise all four CLI commands above. To confirm invalid input is
+handled without a traceback, run:
+
+```bash
+python python_pipeline/mini_app/traffic_cli.py lookup invalid
+```
+
+This command should log the expected timestamp-format error and return exit
+code 2. Part 2 currently has no separate unit-test package; the root README
+contains the full three-milestone smoke-test sequence.
+
 ## Logging
 
 Every module uses `logging.getLogger(__name__)`. Executable entry points

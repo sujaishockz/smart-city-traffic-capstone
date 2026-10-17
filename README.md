@@ -14,7 +14,7 @@ connected parts that build on one another:
 |---|---|---|
 | [`data_analytics/`](data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | ✅ Complete |
 | [`python_pipeline/`](python_pipeline/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
-| [`machine_learning/`](machine_learning/) | Supervised/unsupervised ML, deep learning, explainability, MLOps, recommendations | ⚪ Not started |
+| [`machine_learning/`](machine_learning/) | Supervised/unsupervised ML, neural network, explainability, MLOps, recommendations | Complete |
 
 ## Capstone Progress Checklist
 
@@ -41,7 +41,7 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 4: Provide at least three CLI queries, command/argument logging, and graceful invalid-input handling.
 - [x] Task 5: Document setup, run steps, logging, and reproducibility; include pinned dependencies, sample log, and methodology/findings report.
 
-### Milestone 3: Machine Learning and AI — In Progress
+### Milestone 3: Machine Learning and AI — Complete
 
 - [x] Create the quartile-based congestion category and documented proxy accident-risk label; state that it is not actual accident prediction.
 - [x] Task 1: Train at least two classification and two regression algorithms; compare with the specified metrics.
@@ -63,27 +63,27 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 smart-city-traffic-capstone/
 ├── data_analytics/
 │   ├── data/                  # Raw CSV dataset
-│   ├── db/                    # SQLite database (built from the CSV)
-│   ├── sql/                   # SQL scripts for each task
-│   ├── reports/               # Insights report(s) and query outputs
+│   ├── db/traffic.db          # SQLite database
+│   ├── reports/               # Findings, dashboard specification and .pbix
+│   ├── sql/                   # SQL and statistics/probability scripts
 │   └── README.md
 ├── python_pipeline/
-│   ├── pipeline.py            # Data pipeline (load, validate, clean)
-│   ├── feature_engineering.py # ML-ready feature creation
-│   ├── visualizations.py      # Matplotlib charts
-│   ├── mini_app/              # CLI analytics application
 │   ├── data/processed/        # Cleaned and engineered CSV outputs
-│   ├── figures/               # Four saved charts
-│   ├── logs/                  # End-to-end pipeline.log sample output
-│   ├── reports/               # Part 2 findings and figure interpretations
-│   └── requirements.txt       # Pinned Python dependencies
+│   ├── figures/               # Four generated charts
+│   ├── mini_app/traffic_cli.py
+│   ├── reports/               # Methodology and chart interpretations
+│   ├── pipeline.py
+│   ├── feature_engineering.py
+│   ├── visualizations.py
+│   ├── requirements.txt
 │   └── README.md
 ├── machine_learning/
-│   ├── notebooks/             # EDA / modelling notebooks
-│   ├── models/                # Saved model artifacts
-│   ├── mlruns/                # MLflow experiment tracking (gitignored)
-│   ├── deployment/            # FastAPI/Flask deployment mock-up
-│   ├── reports/               # Final report + bias & fairness report
+│   ├── deployment/app.py      # FastAPI model-serving simulation
+│   ├── models/                # Versioned model artifacts
+│   ├── mlruns/                # Local MLflow store (gitignored)
+│   ├── reports/               # Task metrics, final report and fairness review
+│   ├── tests/                 # 14 unit tests
+│   ├── requirements.txt
 │   └── README.md
 ├── .gitignore
 └── README.md
@@ -93,14 +93,91 @@ smart-city-traffic-capstone/
 
 - **Data Analytics**: SQLite, SQL, Power BI, Power Query
 - **Python**: pandas, NumPy, Matplotlib, sqlite3, logging, argparse
-- **Machine Learning**: scikit-learn, mlxtend (association rules), TensorFlow/PyTorch (deep learning), SHAP/LIME, MLflow, FastAPI/Flask
+- **Machine Learning**: scikit-learn, mlxtend (association rules), MLPClassifier, LIME, MLflow, FastAPI and Uvicorn
 
 ## How to Run
 
-Each part has its own README with detailed run instructions:
-- [Data Analytics](data_analytics/README.md)
-- [Python Pipeline](python_pipeline/README.md)
-- Machine Learning (added once that work begins)
+### Get Started
+
+From the repository root, create a virtual environment and install the Python
+dependencies. The data-analytics scripts use only Python's standard library;
+the ML dependency set also includes the packages needed for the API and MLflow.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r python_pipeline/requirements.txt
+python -m pip install -r machine_learning/requirements.txt
+```
+
+On Windows, activate the environment with `.venv\Scripts\activate`.
+
+### End-to-End Verification
+
+Run these commands from the repository root. They rebuild the SQLite database,
+execute the analytics, regenerate the Python outputs, retrain the ML artifacts,
+and run the unit suite.
+
+```bash
+# Milestone 1: database, SQL, statistics and probabilities
+python data_analytics/sql/load_csv_to_sqlite.py
+sqlite3 -bail data_analytics/db/traffic.db < data_analytics/sql/02_annual_traffic_trends.sql
+sqlite3 -bail data_analytics/db/traffic.db < data_analytics/sql/03_holiday_temperature.sql
+python data_analytics/sql/04_descriptive_statistics.py
+python data_analytics/sql/05_probability_congestion.py
+sqlite3 -bail data_analytics/db/traffic.db < data_analytics/sql/06_powerbi_queries.sql
+
+# Milestone 2: clean, engineer, visualize and query
+python python_pipeline/pipeline.py
+python python_pipeline/feature_engineering.py
+python python_pipeline/visualizations.py
+python python_pipeline/mini_app/traffic_cli.py lookup '2017-01-01 08:00:00'
+python python_pipeline/mini_app/traffic_cli.py high-traffic --limit 3
+python python_pipeline/mini_app/traffic_cli.py compare-days
+python python_pipeline/mini_app/traffic_cli.py recommend --day-type weekday --weather Clear
+
+# Milestone 3: train, analyze, serve/report and test
+python machine_learning/train_supervised.py
+python machine_learning/analyze_patterns.py
+python machine_learning/train_neural_explainer.py
+python machine_learning/detect_anomalies.py
+python machine_learning/recommend_travel_time.py --report
+python machine_learning/run_mlops.py
+python machine_learning/monitor_drift.py
+python machine_learning/analyze_responsible_ai.py
+python -m unittest discover -s machine_learning/tests -v
+python -m pip check
+```
+
+The automated `unittest` suite covers the ML components (14 tests). Milestones
+1 and 2 are checked by running their database/analysis scripts and CLI smoke
+commands above; they do not currently have separate unit-test packages.
+
+The invalid-input path can be checked with
+`python python_pipeline/mini_app/traffic_cli.py lookup invalid`; it should log
+the format error, return exit code 2, and not print a traceback. Confirm the
+database has 48,204 rows, the cleaned/features CSVs have 48,187 rows, and four
+PNG files exist under `python_pipeline/figures/`.
+
+The verification commands regenerate tracked databases, logs, models, and
+reports. Review `git status` afterward before committing; MLflow run files under
+`machine_learning/mlruns/` are local and gitignored.
+
+For the local model API, start
+`uvicorn machine_learning.deployment.app:app --host 127.0.0.1 --port 8000`,
+then check `GET /health` and `POST /predict`; the payload and expected response
+are documented in [the ML guide](machine_learning/README.md).
+
+The Power BI deliverable is
+[`data_analytics/reports/smart-city-traffic-dashboard.pbix`](data_analytics/reports/smart-city-traffic-dashboard.pbix).
+`unzip -t` checks package integrity. For the actual visual interaction check,
+open it in Power BI Desktop on Windows and verify the KPI cards, four visuals,
+and hour/weather/traffic-category slicers; Power BI Desktop's visual UI could
+not be exercised on this macOS environment.
+
+Detailed instructions and results are in the [Data Analytics](data_analytics/README.md),
+[Python Pipeline](python_pipeline/README.md), and [Machine Learning](machine_learning/README.md)
+guides.
 
 ## Logging Configuration
 
