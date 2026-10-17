@@ -1,6 +1,6 @@
 # Machine Learning and AI: Building an Intelligent Mobility Solution
 
-**Status: in progress.** Tasks 1 and 2 are implemented and validated; remaining
+**Status: in progress.** Tasks 1 through 3 are implemented and validated; remaining
 milestone tasks are listed below.
 
 ## Planned Folder Structure
@@ -16,11 +16,14 @@ machine_learning/
 │   ├── cluster_assignments.csv
 │   ├── pattern_analysis.md
 │   ├── pattern_analysis.json
+│   ├── neural_explainability.md
+│   ├── neural_explainability.json
 │   ├── supervised_metrics.json
 │   └── (final capstone report)
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
 ├── analyze_patterns.py
+├── train_neural_explainer.py
 ├── train_supervised.py
 └── README.md
 ```
@@ -116,6 +119,27 @@ lift 3.83). Weekend overnight conditions linked to Low congestion with
 confidence 0.886 and lift 3.54. These describe historical co-occurrences on
 one corridor; neither clusters nor rules imply causation or generalize
 automatically to other roads.
+
+## Neural Network and LIME (Task 3)
+
+Run the CPU MLP and local LIME explanations with:
+
+```bash
+python machine_learning/train_neural_explainer.py
+```
+
+The two-hidden-layer MLP uses the Task 1 chronological split and its
+training-derived `high_risk_proxy` target. On the latest 20% holdout it reached
+accuracy 0.972, precision 0.912, recall 0.959, F1 0.935, and ROC-AUC 0.992.
+LIME explains five positive and five negative holdout examples using original
+numeric units and binary weather indicators. The model is saved as
+`machine_learning/models/traffic_risk_neural_network.joblib`; the metrics and
+per-example explanations are saved in `machine_learning/reports/`.
+
+LIME explanations are local surrogate approximations, not causal explanations.
+Observed weather contributes to the proxy-label definition, so weather
+features partly explain the constructed label. Neither the model nor its
+explanations predict observed accidents.
 
 ## Logging
 

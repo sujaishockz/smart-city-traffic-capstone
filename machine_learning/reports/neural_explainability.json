@@ -1,0 +1,515 @@
+{
+  "dataset": "python_pipeline/data/processed/traffic_features.csv",
+  "model": {
+    "algorithm": "MLPClassifier",
+    "hidden_layer_sizes": [
+      64,
+      32
+    ],
+    "iterations": 45,
+    "train_rows": 38549,
+    "test_rows": 9638,
+    "test_start": "2017-11-01T20:00:00",
+    "test_end": "2018-09-30T23:00:00",
+    "congestion_thresholds_from_training": {
+      "q1": 1186.0,
+      "q2": 3377.0,
+      "q3": 4939.0
+    },
+    "metrics": {
+      "accuracy": 0.9718821332226603,
+      "precision": 0.9115294117647059,
+      "recall": 0.9589108910891089,
+      "f1": 0.9346200241254523,
+      "roc_auc": 0.9921395782266597
+    }
+  },
+  "explainability": {
+    "method": "LIME Tabular",
+    "instances_explained": 10,
+    "local_explanations": [
+      {
+        "test_index": 18,
+        "date_time": "2017-11-02T06:00:00",
+        "actual_proxy_label": 1,
+        "predicted_proxy_probability": 0.8871890968116964,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.36904737555908956
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.3680612550398639
+          },
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.29784630245441396
+          },
+          {
+            "feature_condition": "weather_main_Mist > 0.00",
+            "weight": 0.24567398880346789
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.24187737928984968
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.23981820996931072
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.14238560737841932
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.12853997317480004
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.11845471144661286
+          },
+          {
+            "feature_condition": "is_weekend <= 0.00",
+            "weight": 0.060088594301026546
+          }
+        ]
+      },
+      {
+        "test_index": 19,
+        "date_time": "2017-11-02T06:00:00",
+        "actual_proxy_label": 1,
+        "predicted_proxy_probability": 0.8715963023924974,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.28996426488314436
+          },
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.28222611508394047
+          },
+          {
+            "feature_condition": "weather_main_Fog > 0.00",
+            "weight": 0.25575277548359066
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.2546316700896926
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.2459823986390943
+          },
+          {
+            "feature_condition": "weather_main_Mist <= 0.00",
+            "weight": -0.23385306579785464
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.17961408458239803
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.14601025555321695
+          },
+          {
+            "feature_condition": "holiday_flag <= 0.00",
+            "weight": 0.1457060921542232
+          },
+          {
+            "feature_condition": "snow_1h <= 0.00",
+            "weight": 0.051403482604192134
+          }
+        ]
+      },
+      {
+        "test_index": 20,
+        "date_time": "2017-11-02T07:00:00",
+        "actual_proxy_label": 1,
+        "predicted_proxy_probability": 0.9463409915572829,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.3300179205803767
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.2992979485661508
+          },
+          {
+            "feature_condition": "weather_main_Mist > 0.00",
+            "weight": 0.20793887865527835
+          },
+          {
+            "feature_condition": "holiday_flag <= 0.00",
+            "weight": 0.2037252174418753
+          },
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.18927427225045795
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.18877955007562533
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.1308435662216505
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.11819437638739408
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.10491979296805616
+          },
+          {
+            "feature_condition": "snow_1h <= 0.00",
+            "weight": 0.05557102393559014
+          }
+        ]
+      },
+      {
+        "test_index": 21,
+        "date_time": "2017-11-02T07:00:00",
+        "actual_proxy_label": 1,
+        "predicted_proxy_probability": 0.986826963729371,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Drizzle > 0.00",
+            "weight": 0.3717303985717444
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.3556800960099846
+          },
+          {
+            "feature_condition": "weather_main_Mist <= 0.00",
+            "weight": -0.2808979446399715
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.252267475787489
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.19872740064189542
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.14617293530506925
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.13622897657656197
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.11899933011471363
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.10587230383486047
+          },
+          {
+            "feature_condition": "weather_main_Smoke <= 0.00",
+            "weight": -0.0615165755659455
+          }
+        ]
+      },
+      {
+        "test_index": 22,
+        "date_time": "2017-11-02T08:00:00",
+        "actual_proxy_label": 1,
+        "predicted_proxy_probability": 0.9509209894452874,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.3635985687814399
+          },
+          {
+            "feature_condition": "weather_main_Mist > 0.00",
+            "weight": 0.3256094215955993
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.300781445483556
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.2801205991099895
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.21187973701817325
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.1663956532649612
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.1349042415649764
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.12016907030146168
+          },
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.0788276492300802
+          },
+          {
+            "feature_condition": "5.00 < hour <= 11.00",
+            "weight": 0.07487666506259062
+          }
+        ]
+      },
+      {
+        "test_index": 0,
+        "date_time": "2017-11-01T20:00:00",
+        "actual_proxy_label": 0,
+        "predicted_proxy_probability": 0.08586428392727907,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.36038960280709015
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.3532964055255389
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.344487983173186
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.2518987228563771
+          },
+          {
+            "feature_condition": "weather_main_Drizzle > 0.00",
+            "weight": 0.24405022213301653
+          },
+          {
+            "feature_condition": "weather_main_Mist <= 0.00",
+            "weight": -0.2433794151886043
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.1650325050612867
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.15868517496290574
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.12346961971710388
+          },
+          {
+            "feature_condition": "weather_main_Smoke <= 0.00",
+            "weight": 0.04229342717264071
+          }
+        ]
+      },
+      {
+        "test_index": 1,
+        "date_time": "2017-11-01T20:00:00",
+        "actual_proxy_label": 0,
+        "predicted_proxy_probability": 0.1220973559878954,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.3991142627436253
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.2570038265159464
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.23857212817195775
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.20622746356546331
+          },
+          {
+            "feature_condition": "weather_main_Mist > 0.00",
+            "weight": 0.18943419148755716
+          },
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.1514965799202337
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.14749886348981203
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.1335541625904552
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.12890510085605708
+          },
+          {
+            "feature_condition": "snow_1h <= 0.00",
+            "weight": -0.10310590273271954
+          }
+        ]
+      },
+      {
+        "test_index": 2,
+        "date_time": "2017-11-01T20:00:00",
+        "actual_proxy_label": 0,
+        "predicted_proxy_probability": 0.08258470722332505,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.3857855474004464
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.3082131264503214
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.3013637927960465
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.2868735778770507
+          },
+          {
+            "feature_condition": "weather_main_Mist <= 0.00",
+            "weight": -0.18317445661175225
+          },
+          {
+            "feature_condition": "weather_main_Rain > 0.00",
+            "weight": 0.1336223354784324
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.12923786594738784
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.12348641509005523
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.10951350456601965
+          },
+          {
+            "feature_condition": "hour > 17.00",
+            "weight": -0.04997182118659253
+          }
+        ]
+      },
+      {
+        "test_index": 3,
+        "date_time": "2017-11-01T21:00:00",
+        "actual_proxy_label": 0,
+        "predicted_proxy_probability": 0.03259929948002457,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Mist > 0.00",
+            "weight": 0.21518496653766125
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.21156054547663908
+          },
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.19371790857037538
+          },
+          {
+            "feature_condition": "weather_main_Drizzle <= 0.00",
+            "weight": -0.18810400074731992
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.18720105146945515
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.17362477458722106
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.1251245213956958
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.11376432054641068
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.10669035422635163
+          },
+          {
+            "feature_condition": "snow_1h <= 0.00",
+            "weight": -0.01806491462742994
+          }
+        ]
+      },
+      {
+        "test_index": 4,
+        "date_time": "2017-11-01T21:00:00",
+        "actual_proxy_label": 0,
+        "predicted_proxy_probability": 0.01727167738751734,
+        "local_explanation": [
+          {
+            "feature_condition": "weather_main_Rain <= 0.00",
+            "weight": -0.3161246130252572
+          },
+          {
+            "feature_condition": "weather_main_Fog <= 0.00",
+            "weight": -0.2812409090356272
+          },
+          {
+            "feature_condition": "weather_main_Mist <= 0.00",
+            "weight": -0.26381536870657346
+          },
+          {
+            "feature_condition": "weather_main_Drizzle > 0.00",
+            "weight": 0.208246788245329
+          },
+          {
+            "feature_condition": "weather_main_Haze <= 0.00",
+            "weight": -0.1921467117819462
+          },
+          {
+            "feature_condition": "weather_main_Snow <= 0.00",
+            "weight": -0.18428997937994968
+          },
+          {
+            "feature_condition": "weather_main_Clouds <= 0.00",
+            "weight": 0.1547681022951586
+          },
+          {
+            "feature_condition": "weather_main_Thunderstorm <= 0.00",
+            "weight": -0.14347621936314114
+          },
+          {
+            "feature_condition": "weather_main_Clear <= 0.00",
+            "weight": 0.10753137053131992
+          },
+          {
+            "feature_condition": "hour > 17.00",
+            "weight": -0.08209850211661246
+          }
+        ]
+      }
+    ],
+    "interpretation_limit": "LIME approximates this model locally; explanations are not causal and refer only to the constructed proxy label."
+  },
+  "proxy_label": "high_risk_proxy = training-threshold upper-half congestion (High/Severe) AND adverse or low-visibility observed weather; not an accident label."
+}
