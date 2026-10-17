@@ -67,8 +67,9 @@ def create_visualizations(data: pd.DataFrame, output_dir: Path = FIGURES_DIR) ->
     weekday_peak = int(hourly["Weekday"].idxmax()) if "Weekday" in hourly else -1
     weekend_peak = int(hourly["Weekend"].idxmax()) if "Weekend" in hourly else -1
     interpretation = (
-        f"Average weekday traffic peaks around {weekday_peak:02d}:00, while weekend traffic peaks around "
-        f"{weekend_peak:02d}:00. The curves show how demand timing differs by day type."
+        f"Average weekday traffic peaks around {weekday_peak:02d}:00 ({hourly.loc[weekday_peak, 'Weekday']:.1f} "
+        f"vehicles per hour), while weekend traffic peaks around {weekend_peak:02d}:00 "
+        f"({hourly.loc[weekend_peak, 'Weekend']:.1f} vehicles per hour). The curves show how demand timing differs by day type."
     )
     interpretations.append(_save_figure(figure, output_dir / "traffic_by_hour_and_day_type.png", interpretation))
 
@@ -91,7 +92,10 @@ def create_visualizations(data: pd.DataFrame, output_dir: Path = FIGURES_DIR) ->
             output_dir / "average_traffic_by_weather.png",
             f"{highest_weather} has the highest observed average traffic ({highest_average:.1f}) and "
             f"{lowest_weather} the lowest ({lowest_average:.1f}), a difference of "
-            f"{highest_average - lowest_average:.1f} vehicles per hour. Group counts are included in the report context.",
+            f"{highest_average - lowest_average:.1f} vehicles per hour. These means are based on "
+            f"{int(weather_summary['count'].iloc[-1])} {highest_weather} and "
+            f"{int(weather_summary['count'].iloc[0])} {lowest_weather} observations, respectively; "
+            "the rare-category estimate should be interpreted cautiously.",
         )
     )
 
