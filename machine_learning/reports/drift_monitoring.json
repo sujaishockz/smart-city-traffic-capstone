@@ -1,0 +1,40 @@
+{
+  "method": "Population Stability Index (PSI)",
+  "threshold": 0.2,
+  "split": {
+    "baseline_rows": 38549,
+    "recent_rows": 9638,
+    "baseline_end": "2017-11-01T19:00:00",
+    "recent_start": "2017-11-01T20:00:00"
+  },
+  "observed_holdout": {
+    "status": "ALERT/Requires investigation",
+    "psi_threshold": 0.2,
+    "features": {
+      "traffic_volume": 0.00808741554400277,
+      "temp_scaled": 0.12312947615165622,
+      "rain_1h_scaled": 0.0,
+      "clouds_all_scaled": 0.39035557729904796,
+      "hour_sin": 0.00013625270949074438
+    }
+  },
+  "controlled_shift_simulation": {
+    "injected_change": "traffic_volume multiplied by 1.5 in the recent sample",
+    "status": "ALERT/Requires investigation",
+    "psi_threshold": 0.2,
+    "features": {
+      "traffic_volume": 0.8781438502121917,
+      "temp_scaled": 0.12312947615165622,
+      "rain_1h_scaled": 0.0,
+      "clouds_all_scaled": 0.39035557729904796,
+      "hour_sin": 0.00013625270949074438
+    }
+  },
+  "status": "ALERT/Requires investigation",
+  "interpretation": "PASS/Normal means no monitored feature crossed the configured PSI threshold; ALERT/Requires investigation means at least one feature distribution changed materially.",
+  "limitations": [
+    "PSI detects distribution change, not predictive error or operational impact.",
+    "The threshold is a heuristic; alerts require human investigation and may reflect seasonality.",
+    "The injected 50% traffic shift is a controlled test, not an observed event."
+  ]
+}

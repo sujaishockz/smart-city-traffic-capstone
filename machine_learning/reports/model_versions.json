@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "sklearn_version": "1.6.1",
+  "models": [
+    {
+      "name": "traffic_volume_regressor",
+      "version": "1.0.0",
+      "artifact": "machine_learning/models/traffic_volume_regressor.joblib",
+      "algorithm": "hist_gradient_boosting",
+      "metrics": {
+        "mae": 287.3652681454976,
+        "rmse": 509.0953169097043,
+        "r2": 0.9330539447995343
+      }
+    },
+    {
+      "name": "traffic_risk_proxy_classifier",
+      "version": "1.0.0",
+      "artifact": "machine_learning/models/traffic_risk_classifier.joblib",
+      "algorithm": "random_forest",
+      "metrics": {
+        "accuracy": 0.971052085494916,
+        "precision": 0.8958617553433379,
+        "recall": 0.9752475247524752,
+        "f1": 0.9338705854467884,
+        "roc_auc": 0.9923318014395297
+      }
+    },
+    {
+      "name": "traffic_risk_neural_network",
+      "version": "1.0.0",
+      "artifact": "machine_learning/models/traffic_risk_neural_network.joblib",
+      "algorithm": "MLPClassifier",
+      "metrics": {
+        "accuracy": 0.9718821332226603,
+        "precision": 0.9115294117647059,
+        "recall": 0.9589108910891089,
+        "f1": 0.9346200241254523,
+        "roc_auc": 0.9921395782266597
+      }
+    },
+    {
+      "name": "traffic_condition_kmeans",
+      "version": "1.0.0",
+      "artifact": "machine_learning/models/traffic_condition_kmeans.joblib",
+      "algorithm": "KMeans",
+      "metrics": {
+        "clusters": 4,
+        "inertia": 342997.6736075621
+      }
+    },
+    {
+      "name": "traffic_condition_isolation_forest",
+      "version": "1.0.0",
+      "artifact": "machine_learning/models/traffic_condition_isolation_forest.joblib",
+      "algorithm": "Isolation Forest",
+      "metrics": {
+        "holdout_anomaly_rate": 0.02521269973023449,
+        "holdout_anomaly_count": 243
+      }
+    }
+  ]
+}

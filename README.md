@@ -49,11 +49,11 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 3: Implement a neural network, LSTM, or CNN and apply SHAP or LIME explainability.
 - [x] Task 4: Apply an advanced AI technique and document its rationale, implementation, value, and limitations.
 - [x] Task 5: Build a travel-timing recommendation using day type and, where useful, weather.
-- [ ] Task 6.1: Document model versions and performance.
-- [ ] Task 6.2: Track experiments, parameters, metrics, and model versions with MLflow.
-- [ ] Task 6.3: Create a FastAPI or Flask deployment simulation serving at least one model.
-- [ ] Task 6.4: Simulate prediction-error or feature-distribution drift monitoring.
-- [ ] Task 6.5: Report monitoring status as PASS/Normal or ALERT/Requires investigation.
+- [x] Task 6.1: Document model versions and performance.
+- [x] Task 6.2: Track experiments, parameters, metrics, and model versions with MLflow.
+- [x] Task 6.3: Create a FastAPI or Flask deployment simulation serving at least one model.
+- [x] Task 6.4: Simulate prediction-error or feature-distribution drift monitoring.
+- [x] Task 6.5: Report monitoring status as PASS/Normal or ALERT/Requires investigation.
 - [ ] Task 7: Complete bias/fairness, governance, and sustainability analysis.
 - [ ] Final deliverables: models, notebooks/scripts, MLflow evidence, deployment and recommendation components, final report, fairness report, and README.
 

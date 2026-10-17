@@ -1,0 +1,14 @@
+{
+  "experiment_name": "traffic-volume-regression",
+  "run_id": "d1451d4661544709b26080a4ca775308",
+  "model_name": "traffic_volume_regressor",
+  "model_version": "1.0.0",
+  "algorithm": "hist_gradient_boosting",
+  "metrics": {
+    "mae": 287.3652681454976,
+    "rmse": 509.0953169097043,
+    "r2": 0.9330539447995343
+  },
+  "tracking_store": "machine_learning/mlruns/",
+  "run_artifact_path": "traffic-volume-regressor/"
+}

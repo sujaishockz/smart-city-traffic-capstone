@@ -1,7 +1,7 @@
 # Machine Learning and AI: Building an Intelligent Mobility Solution
 
-**Status: in progress.** Tasks 1 through 5 are implemented and validated; remaining
-milestone tasks are listed below.
+**Status: in progress.** Tasks 1 through 6 are implemented and validated; Task 7
+and the final report remain.
 
 ## Planned Folder Structure
 
@@ -10,7 +10,7 @@ machine_learning/
 ├── notebooks/             # EDA and modelling notebooks
 ├── models/                # Selected Task 1 model artifacts
 ├── mlruns/                # MLflow tracking data (gitignored — see .gitignore)
-├── deployment/            # FastAPI/Flask deployment mock-up
+├── deployment/            # FastAPI model-serving simulation
 ├── reports/
 │   ├── bias_fairness/     # Bias & fairness report
 │   ├── cluster_assignments.csv
@@ -23,13 +23,19 @@ machine_learning/
 │   ├── anomaly_scores.csv
 │   ├── travel_recommendations.md
 │   ├── travel_recommendations.json
+│   ├── model_versions.json
+│   ├── mlflow_evidence.json
+│   ├── drift_monitoring.md
+│   ├── drift_monitoring.json
 │   ├── supervised_metrics.json
 │   └── (final capstone report)
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
 ├── analyze_patterns.py
 ├── detect_anomalies.py
+├── monitor_drift.py
 ├── recommend_travel_time.py
+├── run_mlops.py
 ├── train_neural_explainer.py
 ├── train_supervised.py
 └── README.md
@@ -185,6 +191,52 @@ the top estimated window is 03:00-05:00 at about 452 vehicles/hour. The report
 includes the historical support count and can be regenerated for a different
 month. Results are based on 2012-2018 corridor data, assume a non-holiday, and
 are not real-time forecasts or route recommendations.
+
+## MLOps Simulation (Task 6)
+
+### Model Versions and MLflow
+
+The version/performance catalog in `machine_learning/reports/model_versions.json`
+lists the five persisted models as version `1.0.0`, their artifact paths,
+algorithms, scikit-learn version, and task-specific metrics. Log the selected
+traffic-volume model to the local MLflow experiment store with:
+
+```bash
+python machine_learning/run_mlops.py
+```
+
+The run records parameters, holdout metrics, model signature, input example,
+and artifact under the `traffic-volume-regression` experiment. The local
+`machine_learning/mlruns/` store is gitignored; the run ID and metric summary
+are preserved in `machine_learning/reports/mlflow_evidence.json`.
+
+### Model Serving
+
+Start the FastAPI simulation from the repository root:
+
+```bash
+uvicorn machine_learning.deployment.app:app --host 127.0.0.1 --port 8000
+```
+
+`GET /health` reports the served version. `POST /predict` serves the saved
+traffic-volume regressor and validates hour, calendar, weather, and month
+inputs. This is a local demonstration, not a production deployment.
+
+### Drift Monitoring
+
+Run the PSI feature-distribution monitor with:
+
+```bash
+python machine_learning/monitor_drift.py
+```
+
+The baseline is the first 80% of the chronological dataset; the recent sample
+is the final 20%. PSI 0.2 triggers `ALERT/Requires investigation`. The current
+holdout status is **ALERT/Requires investigation** because
+`clouds_all_scaled` PSI is 0.390. A controlled +50% traffic-volume shift also
+alerts (traffic PSI 0.878), demonstrating the alert path. PSI indicates
+distribution change, not predictive error; inspect seasonality and data
+quality before taking operational action.
 
 ## Logging
 
