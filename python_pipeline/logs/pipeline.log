@@ -1,4 +1,5 @@
-2026-10-17 11:36:35,488 INFO __main__ Feature engineering input shape: 48187 rows, 9 columns
-2026-10-17 11:36:35,570 INFO __main__ Feature engineering output shape: 48187 rows, 36 columns
-2026-10-17 11:36:35,570 INFO __main__ Created time, weather, holiday, scaled numeric, and congestion features
-2026-10-17 11:36:36,264 INFO __main__ Saved engineered feature dataset to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_features.csv
+2026-10-17 11:38:01,001 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_by_hour_and_day_type.png
+2026-10-17 11:38:01,209 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/average_traffic_by_weather.png
+2026-10-17 11:38:01,624 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/temperature_vs_traffic.png
+2026-10-17 11:38:01,852 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_volume_distribution.png
+2026-10-17 11:38:01,856 INFO __main__ Saved visualization interpretations to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/reports/visualization_interpretations.md
