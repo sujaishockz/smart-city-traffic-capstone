@@ -54,8 +54,8 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 6.3: Create a FastAPI or Flask deployment simulation serving at least one model.
 - [x] Task 6.4: Simulate prediction-error or feature-distribution drift monitoring.
 - [x] Task 6.5: Report monitoring status as PASS/Normal or ALERT/Requires investigation.
-- [ ] Task 7: Complete bias/fairness, governance, and sustainability analysis.
-- [ ] Final deliverables: models, notebooks/scripts, MLflow evidence, deployment and recommendation components, final report, fairness report, and README.
+- [x] Task 7: Complete bias/fairness, governance, and sustainability analysis.
+- [x] Final deliverables: models, notebooks/scripts, MLflow evidence, deployment and recommendation components, final report, fairness report, and README.
 
 ## Repository Structure
 
@@ -118,10 +118,10 @@ Starting in the Python pipeline work, all pipeline and application code uses Pyt
 ## Assumptions and Limitations
 
 - No accident dataset was provided. The machine learning classification task uses a
-  **documented proxy accident-risk label** derived from congestion severity and
-  adverse/low-visibility weather — see `machine_learning/README.md` once
-  added. This proxy is for demonstrating the ML workflow only and is **not** a
-  real accident risk prediction.
+  **documented proxy accident-risk label** derived from training-period upper-half
+  congestion and adverse/low-visibility weather. See the completed Part 3 report
+  and `machine_learning/README.md`. This proxy demonstrates the ML workflow only
+  and is **not** a real accident-risk prediction.
 - The dataset represents a single corridor (westbound I-94), so travel
   recommendations focus on **timing**, not route selection.
 

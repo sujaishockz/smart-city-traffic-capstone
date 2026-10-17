@@ -1,7 +1,7 @@
 # Machine Learning and AI: Building an Intelligent Mobility Solution
 
-**Status: in progress.** Tasks 1 through 6 are implemented and validated; Task 7
-and the final report remain.
+**Status: complete.** Tasks 1 through 7 are implemented and validated; the
+final Part 3 report and fairness/governance report are included.
 
 ## Planned Folder Structure
 
@@ -27,11 +27,15 @@ machine_learning/
 │   ├── mlflow_evidence.json
 │   ├── drift_monitoring.md
 │   ├── drift_monitoring.json
+│   ├── part3_final_report.md
+│   │   ├── bias_fairness_governance_sustainability.md
+│   │   └── bias_fairness_metrics.json
 │   ├── supervised_metrics.json
 │   └── (final capstone report)
 ├── tests/                 # Focused model-pipeline tests
 ├── requirements.txt
 ├── analyze_patterns.py
+├── analyze_responsible_ai.py
 ├── detect_anomalies.py
 ├── monitor_drift.py
 ├── recommend_travel_time.py
@@ -238,6 +242,26 @@ alerts (traffic PSI 0.878), demonstrating the alert path. PSI indicates
 distribution change, not predictive error; inspect seasonality and data
 quality before taking operational action.
 
+## Responsible AI and Final Report (Task 7)
+
+Generate the subgroup diagnostics, governance/sustainability report, and
+integrated Part 3 report with:
+
+```bash
+python machine_learning/analyze_responsible_ai.py
+```
+
+The report compares proxy-classifier TPR, FPR, precision, and F1 across
+weekday/weekend and observed-weather groups on the chronological holdout. The
+dataset has no demographic attributes, so these operational segments do not
+constitute a protected-group fairness audit. Weather is part of the proxy-label
+definition, which creates expected differences between weather groups.
+
+See `machine_learning/reports/bias_fairness/` for subgroup metrics and
+governance/sustainability findings, and
+`machine_learning/reports/part3_final_report.md` for the integrated summary of
+all Part 3 tasks, results, limitations, and reproduction steps.
+
 ## Logging
 
 Every script uses `logging.getLogger(__name__)`; INFO for milestones
@@ -247,4 +271,14 @@ CLI/user-facing output only.
 
 ## How to Run
 
-_To be added once modelling work begins._
+From the repository root, install the pinned dependencies and run the complete
+test suite:
+
+```bash
+python -m pip install -r machine_learning/requirements.txt
+python -m unittest discover -s machine_learning/tests -v
+```
+
+Run each task script from the repository root using the commands in its section
+above. The final synthesis is in
+`machine_learning/reports/part3_final_report.md`.

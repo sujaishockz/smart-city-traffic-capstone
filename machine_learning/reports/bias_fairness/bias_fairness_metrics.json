@@ -1,0 +1,245 @@
+{
+  "model": "traffic_risk_proxy_classifier",
+  "model_version": "1.0.0",
+  "evaluation": "chronological holdout; training-only congestion thresholds",
+  "split": {
+    "train_rows": 38549,
+    "test_rows": 9638,
+    "test_start": "2017-11-01T20:00:00",
+    "test_end": "2018-09-30T23:00:00",
+    "congestion_thresholds_from_training": {
+      "q1": 1186.0,
+      "q2": 3377.0,
+      "q3": 4939.0
+    }
+  },
+  "overall": {
+    "support": 9638,
+    "actual_positive": 2020,
+    "predicted_positive": 2199,
+    "actual_positive_rate": 0.2095870512554472,
+    "predicted_positive_rate": 0.22815936916372692,
+    "accuracy": 0.971052085494916,
+    "precision": 0.8958617553433379,
+    "recall_tpr": 0.9752475247524752,
+    "false_positive_rate": 0.03006038330270412,
+    "f1": 0.9338705854467884
+  },
+  "subgroups": {
+    "day_type": {
+      "weekday": {
+        "support": 6876,
+        "actual_positive": 1653,
+        "predicted_positive": 1754,
+        "actual_positive_rate": 0.24040139616055847,
+        "predicted_positive_rate": 0.25509016870273415,
+        "accuracy": 0.9792030250145434,
+        "precision": 0.9304446978335233,
+        "recall_tpr": 0.9872958257713249,
+        "false_positive_rate": 0.023358223243346736,
+        "f1": 0.9580275902553567
+      },
+      "weekend": {
+        "support": 2762,
+        "actual_positive": 367,
+        "predicted_positive": 445,
+        "actual_positive_rate": 0.1328747284576394,
+        "predicted_positive_rate": 0.1611151339608979,
+        "accuracy": 0.9507603186097031,
+        "precision": 0.7595505617977528,
+        "recall_tpr": 0.9209809264305178,
+        "false_positive_rate": 0.044676409185803755,
+        "f1": 0.8325123152709359
+      }
+    },
+    "weather_risk": {
+      "adverse_or_low_visibility": {
+        "support": 4325,
+        "actual_positive": 2020,
+        "predicted_positive": 2199,
+        "actual_positive_rate": 0.46705202312138727,
+        "predicted_positive_rate": 0.5084393063583815,
+        "accuracy": 0.9354913294797688,
+        "precision": 0.8958617553433379,
+        "recall_tpr": 0.9752475247524752,
+        "false_positive_rate": 0.09934924078091106,
+        "f1": 0.9338705854467884
+      },
+      "other_weather": {
+        "support": 5313,
+        "actual_positive": 0,
+        "predicted_positive": 0,
+        "actual_positive_rate": 0.0,
+        "predicted_positive_rate": 0.0,
+        "accuracy": 1.0,
+        "precision": 0.0,
+        "recall_tpr": null,
+        "false_positive_rate": 0.0,
+        "f1": 0.0
+      }
+    },
+    "weather_main": {
+      "Clear": {
+        "support": 2830,
+        "actual_positive": 0,
+        "predicted_positive": 0,
+        "actual_positive_rate": 0.0,
+        "predicted_positive_rate": 0.0,
+        "accuracy": 1.0,
+        "precision": 0.0,
+        "recall_tpr": null,
+        "false_positive_rate": 0.0,
+        "f1": 0.0
+      },
+      "Clouds": {
+        "support": 2483,
+        "actual_positive": 0,
+        "predicted_positive": 0,
+        "actual_positive_rate": 0.0,
+        "predicted_positive_rate": 0.0,
+        "accuracy": 1.0,
+        "precision": 0.0,
+        "recall_tpr": null,
+        "false_positive_rate": 0.0,
+        "f1": 0.0
+      },
+      "Drizzle": {
+        "support": 339,
+        "actual_positive": 195,
+        "predicted_positive": 199,
+        "actual_positive_rate": 0.5752212389380531,
+        "predicted_positive_rate": 0.5870206489675516,
+        "accuracy": 0.9646017699115044,
+        "precision": 0.9597989949748744,
+        "recall_tpr": 0.9794871794871794,
+        "false_positive_rate": 0.05555555555555555,
+        "f1": 0.9695431472081218
+      },
+      "Fog": {
+        "support": 219,
+        "actual_positive": 54,
+        "predicted_positive": 75,
+        "actual_positive_rate": 0.2465753424657534,
+        "predicted_positive_rate": 0.3424657534246575,
+        "accuracy": 0.8584474885844748,
+        "precision": 0.6533333333333333,
+        "recall_tpr": 0.9074074074074074,
+        "false_positive_rate": 0.15757575757575756,
+        "f1": 0.7596899224806202
+      },
+      "Haze": {
+        "support": 367,
+        "actual_positive": 200,
+        "predicted_positive": 216,
+        "actual_positive_rate": 0.5449591280653951,
+        "predicted_positive_rate": 0.5885558583106267,
+        "accuracy": 0.9509536784741145,
+        "precision": 0.9212962962962963,
+        "recall_tpr": 0.995,
+        "false_positive_rate": 0.10179640718562874,
+        "f1": 0.9567307692307693
+      },
+      "Mist": {
+        "support": 1338,
+        "actual_positive": 557,
+        "predicted_positive": 580,
+        "actual_positive_rate": 0.4162929745889387,
+        "predicted_positive_rate": 0.4334828101644245,
+        "accuracy": 0.9484304932735426,
+        "precision": 0.9206896551724137,
+        "recall_tpr": 0.9587073608617595,
+        "false_positive_rate": 0.058898847631242,
+        "f1": 0.9393139841688655
+      },
+      "Rain": {
+        "support": 1032,
+        "actual_positive": 542,
+        "predicted_positive": 581,
+        "actual_positive_rate": 0.5251937984496124,
+        "predicted_positive_rate": 0.562984496124031,
+        "accuracy": 0.9544573643410853,
+        "precision": 0.9259896729776248,
+        "recall_tpr": 0.992619926199262,
+        "false_positive_rate": 0.08775510204081632,
+        "f1": 0.9581478183437222
+      },
+      "Snow": {
+        "support": 759,
+        "actual_positive": 337,
+        "predicted_positive": 398,
+        "actual_positive_rate": 0.4440052700922266,
+        "predicted_positive_rate": 0.5243741765480896,
+        "accuracy": 0.8880105401844532,
+        "precision": 0.8165829145728644,
+        "recall_tpr": 0.9643916913946587,
+        "false_positive_rate": 0.17298578199052134,
+        "f1": 0.8843537414965986
+      },
+      "Thunderstorm": {
+        "support": 269,
+        "actual_positive": 133,
+        "predicted_positive": 148,
+        "actual_positive_rate": 0.4944237918215613,
+        "predicted_positive_rate": 0.550185873605948,
+        "accuracy": 0.9368029739776952,
+        "precision": 0.8918918918918919,
+        "recall_tpr": 0.9924812030075187,
+        "false_positive_rate": 0.11764705882352941,
+        "f1": 0.9395017793594306
+      }
+    }
+  },
+  "excluded_small_groups": {
+    "day_type": [],
+    "weather_risk": [],
+    "weather_main": [
+      {
+        "group": "Smoke",
+        "support": 2
+      }
+    ]
+  },
+  "minimum_group_size": 200,
+  "performance_gaps": {
+    "day_type": {
+      "recall_tpr_gap": 0.06631489934080714,
+      "false_positive_rate_gap": 0.02131818594245702,
+      "predicted_positive_rate_gap": 0.09397503474183624
+    },
+    "weather_risk": {
+      "recall_tpr_gap": null,
+      "false_positive_rate_gap": 0.09934924078091106,
+      "predicted_positive_rate_gap": 0.5084393063583815
+    },
+    "weather_main": {
+      "recall_tpr_gap": 0.08759259259259256,
+      "false_positive_rate_gap": 0.17298578199052134,
+      "predicted_positive_rate_gap": 0.5885558583106267
+    }
+  },
+  "fairness_scope": {
+    "demographic_attributes_available": false,
+    "formal_protected_group_audit_possible": false,
+    "operational_segments": [
+      "day_type",
+      "weather_risk",
+      "weather_main"
+    ],
+    "target_is_constructed_proxy": true
+  },
+  "sustainability": {
+    "runtime": "CPU; GPU acceleration not used",
+    "python_version": "3.9",
+    "scikit_learn_version": "1.6.1",
+    "model_artifact_sizes_bytes": {
+      "traffic_volume_regressor.joblib": 448602,
+      "traffic_risk_classifier.joblib": 11459947,
+      "traffic_risk_neural_network.joblib": 93498,
+      "traffic_condition_kmeans.joblib": 194965,
+      "traffic_condition_isolation_forest.joblib": 3873600
+    },
+    "total_model_bytes": 16070612,
+    "total_model_megabytes": 15.326129913330078,
+    "energy_or_carbon_measured": false
+  }
+}
