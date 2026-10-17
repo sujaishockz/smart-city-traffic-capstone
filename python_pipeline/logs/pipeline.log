@@ -1,5 +1,1 @@
-2026-10-17 11:38:01,001 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_by_hour_and_day_type.png
-2026-10-17 11:38:01,209 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/average_traffic_by_weather.png
-2026-10-17 11:38:01,624 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/temperature_vs_traffic.png
-2026-10-17 11:38:01,852 INFO __main__ Saved figure to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/figures/traffic_volume_distribution.png
-2026-10-17 11:38:01,856 INFO __main__ Saved visualization interpretations to /Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/reports/visualization_interpretations.md
+2026-10-17 11:39:54,775 INFO __main__ CLI command=recommend arguments={'data': PosixPath('/Users/sujaikumarrv/Desktop/NUS/Capstone Project/smart-city-traffic-capstone/python_pipeline/data/processed/traffic_features.csv'), 'command': 'recommend', 'day_type': 'weekday', 'weather': None}
