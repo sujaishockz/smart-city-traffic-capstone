@@ -23,6 +23,7 @@ data_analytics/
 │   ├── sql_traffic_analysis_results.md       # query outputs + written observations
 │   ├── part1_insights_report.md
 │   ├── powerbi_dashboard_spec.md
+│   ├── Power BI dashboard results.md
 │   └── smart-city-traffic-dashboard.pbix
 └── README.md
 ```
@@ -34,6 +35,21 @@ python3 sql/04_descriptive_statistics.py
 python3 sql/05_probability_congestion.py
 ```
 
+## Power BI Dashboard Results
+
+The consolidated weather and temperature findings are documented in
+[`reports/Power BI dashboard results.md`](reports/Power%20BI%20dashboard%20results.md).
+
+- **Highest average traffic weather condition:** Clouds, at 3,618.4 vehicles.
+- **Lowest average traffic weather condition:** Squall, at 2,061.8 vehicles.
+- **Weather difference:** 1,556.7 vehicles between the highest and lowest averages.
+- **Temperature/traffic relationship:** Weak positive correlation (`r = 0.1303`).
+  Traffic volume is generally higher around 25–35°C, while the wider scatter shows
+  that temperature alone is not a strong predictor.
+- **Notable outliers/data quality:** The traffic maximum is 7,280 vehicles. Ten
+  source records contain an invalid temperature of approximately -273.15°C and
+  should be treated as zero-Kelvin data-quality errors.
+
 ## Status
 
 - [x] **SQL-Based Traffic Analysis**: data loaded into SQLite and
@@ -43,6 +59,7 @@ python3 sql/05_probability_congestion.py
 - [x] Probability and Congestion Analysis
 - [x] Power BI Traffic Intelligence Dashboard (prepared SQL view, specification,
       and [`smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix) deliverable)
+- [x] Power BI Dashboard Results Summary: Weather and temperature findings are complete in [`reports/Power BI dashboard results.md`](reports/Power%20BI%20dashboard%20results.md).
 
 ## How to Run
 

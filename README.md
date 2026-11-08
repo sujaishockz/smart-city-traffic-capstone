@@ -170,10 +170,12 @@ are documented in [the ML guide](machine_learning/README.md).
 
 The Power BI deliverable is
 [`data_analytics/reports/smart-city-traffic-dashboard.pbix`](data_analytics/reports/smart-city-traffic-dashboard.pbix).
-`unzip -t` checks package integrity. For the actual visual interaction check,
-open it in Power BI Desktop on Windows and verify the KPI cards, four visuals,
-and hour/weather/traffic-category slicers; Power BI Desktop's visual UI could
-not be exercised on this macOS environment.
+Dashboard weather and temperature findings are summarized in
+[`data_analytics/reports/Power BI dashboard results.md`](data_analytics/reports/Power%20BI%20dashboard%20results.md):
+Clouds has the highest average traffic (3,618.4 vehicles), Squall the lowest
+(2,061.8 vehicles), with a 1,556.7-vehicle difference. Temperature and traffic
+have a weak positive correlation (`r = 0.1303`), with the highest average traffic
+bands occurring around 25–35°C.
 
 Detailed instructions and results are in the [Data Analytics](data_analytics/README.md),
 [Python Pipeline](python_pipeline/README.md), and [Machine Learning](machine_learning/README.md)
