@@ -107,10 +107,9 @@ def _standardize_categories(data: pd.DataFrame) -> pd.DataFrame:
         changed_rows |= original.astype("string").fillna("<NA>") != normalized.fillna("<NA>")
         cleaned[column] = normalized.astype("object")
 
-    _log_change(
-        "Categorical standardization",
+    LOGGER.info(
+        "Categorical standardization completed; normalized %d rows",
         int(changed_rows.sum()),
-        "trimmed whitespace, normalized weather labels, and restored the no-holiday sentinel",
     )
     return cleaned
 
@@ -244,9 +243,6 @@ def main(argv: list[str] | None = None) -> int:
         run_pipeline(args.input, args.output)
     except (OSError, ValueError, pd.errors.ParserError) as exc:
         LOGGER.error("Pipeline failed: %s", exc, exc_info=True)
-        return 1
-    except Exception:
-        LOGGER.exception("Unexpected pipeline failure")
         return 1
     return 0
 
