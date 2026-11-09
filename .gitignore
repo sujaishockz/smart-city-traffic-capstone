@@ -26,10 +26,10 @@ desktop.ini
 
 # ===== Logs (keep sample logs, ignore noisy full-run logs) =====
 *.log
-!python_pipeline/logs/pipeline.log
+!part2_python/logs/pipeline.log
 
 # ===== MLflow =====
-machine_learning/mlruns/
+part3_machine_learning/mlruns/
 mlartifacts/
 
 # ===== Secrets / credentials (never commit these) =====
@@ -46,7 +46,7 @@ config_local.py
 *.zip
 
 # ===== SQLite (keep the built DB out of git if it gets large; comment out if you want to submit it) =====
-# data_analytics/db/*.db
+# part1_data_analytics/db/*.db
 
 # ===== Power BI temp files =====
 *.pbix.tmp

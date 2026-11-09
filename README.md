@@ -12,9 +12,9 @@ connected parts that build on one another:
 
 | Folder | Focus | Status |
 |---|---|---|
-| [`data_analytics/`](data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | ✅ Complete |
-| [`python_pipeline/`](python_pipeline/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
-| [`machine_learning/`](machine_learning/) | Supervised/unsupervised ML, neural network, explainability, MLOps, recommendations | Complete |
+| [`part1_data_analytics/`](part1_data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | ✅ Complete |
+| [`part2_python/`](part2_python/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
+| [`part3_machine_learning/`](part3_machine_learning/) | Supervised/unsupervised ML, neural network, explainability, MLOps, recommendations | Complete |
 
 ## Capstone Progress Checklist
 
@@ -61,13 +61,13 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 
 ```
 smart-city-traffic-capstone/
-├── data_analytics/
+├── part1_data_analytics/
 │   ├── data/                  # Raw CSV dataset
 │   ├── db/traffic.db          # SQLite database
 │   ├── reports/               # Findings, dashboard specification and .pbix
 │   ├── sql/                   # SQL and statistics/probability scripts
 │   └── README.md
-├── python_pipeline/
+├── part2_python/
 │   ├── data/processed/        # Cleaned and engineered CSV outputs
 │   ├── figures/               # Four generated charts
 │   ├── mini_app/traffic_cli.py
@@ -77,7 +77,7 @@ smart-city-traffic-capstone/
 │   ├── visualizations.py
 │   ├── requirements.txt
 │   └── README.md
-├── machine_learning/
+├── part3_machine_learning/
 │   ├── deployment/app.py      # FastAPI model-serving simulation
 │   ├── models/                # Versioned model artifacts
 │   ├── mlruns/                # Local MLflow store (gitignored)
@@ -106,8 +106,8 @@ the ML dependency set also includes the packages needed for the API and MLflow.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r python_pipeline/requirements.txt
-python -m pip install -r machine_learning/requirements.txt
+python -m pip install -r part2_python/requirements.txt
+python -m pip install -r part3_machine_learning/requirements.txt
 ```
 
 On Windows, activate the environment with `.venv\Scripts\activate`.
@@ -120,32 +120,32 @@ and run the unit suite.
 
 ```bash
 # Milestone 1: database, SQL, statistics and probabilities
-python data_analytics/sql/load_csv_to_sqlite.py
-sqlite3 -bail data_analytics/db/traffic.db < data_analytics/sql/02_annual_traffic_trends.sql
-sqlite3 -bail data_analytics/db/traffic.db < data_analytics/sql/03_holiday_temperature.sql
-python data_analytics/sql/04_descriptive_statistics.py
-python data_analytics/sql/05_probability_congestion.py
-sqlite3 -bail data_analytics/db/traffic.db < data_analytics/sql/06_powerbi_queries.sql
+python part1_data_analytics/sql/load_csv_to_sqlite.py
+sqlite3 -bail part1_data_analytics/db/traffic.db < part1_data_analytics/sql/02_annual_traffic_trends.sql
+sqlite3 -bail part1_data_analytics/db/traffic.db < part1_data_analytics/sql/03_holiday_temperature.sql
+python part1_data_analytics/sql/04_descriptive_statistics.py
+python part1_data_analytics/sql/05_probability_congestion.py
+sqlite3 -bail part1_data_analytics/db/traffic.db < part1_data_analytics/sql/06_powerbi_queries.sql
 
 # Milestone 2: clean, engineer, visualize and query
-python python_pipeline/pipeline.py
-python python_pipeline/feature_engineering.py
-python python_pipeline/visualizations.py
-python python_pipeline/mini_app/traffic_cli.py lookup '2017-01-01 08:00:00'
-python python_pipeline/mini_app/traffic_cli.py high-traffic --limit 3
-python python_pipeline/mini_app/traffic_cli.py compare-days
-python python_pipeline/mini_app/traffic_cli.py recommend --day-type weekday --weather Clear
+python part2_python/pipeline.py
+python part2_python/feature_engineering.py
+python part2_python/visualizations.py
+python part2_python/mini_app/traffic_cli.py lookup '2017-01-01 08:00:00'
+python part2_python/mini_app/traffic_cli.py high-traffic --limit 3
+python part2_python/mini_app/traffic_cli.py compare-days
+python part2_python/mini_app/traffic_cli.py recommend --day-type weekday --weather Clear
 
 # Milestone 3: train, analyze, serve/report and test
-python machine_learning/train_supervised.py
-python machine_learning/analyze_patterns.py
-python machine_learning/train_neural_explainer.py
-python machine_learning/detect_anomalies.py
-python machine_learning/recommend_travel_time.py --report
-python machine_learning/run_mlops.py
-python machine_learning/monitor_drift.py
-python machine_learning/analyze_responsible_ai.py
-python -m unittest discover -s machine_learning/tests -v
+python part3_machine_learning/train_supervised.py
+python part3_machine_learning/analyze_patterns.py
+python part3_machine_learning/train_neural_explainer.py
+python part3_machine_learning/detect_anomalies.py
+python part3_machine_learning/recommend_travel_time.py --report
+python part3_machine_learning/run_mlops.py
+python part3_machine_learning/monitor_drift.py
+python part3_machine_learning/analyze_responsible_ai.py
+python -m unittest discover -s part3_machine_learning/tests -v
 python -m pip check
 ```
 
@@ -154,31 +154,31 @@ The automated `unittest` suite covers the ML components (14 tests). Milestones
 commands above; they do not currently have separate unit-test packages.
 
 The invalid-input path can be checked with
-`python python_pipeline/mini_app/traffic_cli.py lookup invalid`; it should log
+`python part2_python/mini_app/traffic_cli.py lookup invalid`; it should log
 the format error, return exit code 2, and not print a traceback. Confirm the
 database has 48,204 rows, the cleaned/features CSVs have 48,187 rows, and four
-PNG files exist under `python_pipeline/figures/`.
+PNG files exist under `part2_python/figures/`.
 
 The verification commands regenerate tracked databases, logs, models, and
 reports. Review `git status` afterward before committing; MLflow run files under
-`machine_learning/mlruns/` are local and gitignored.
+`part3_machine_learning/mlruns/` are local and gitignored.
 
 For the local model API, start
-`uvicorn machine_learning.deployment.app:app --host 127.0.0.1 --port 8000`,
+`uvicorn part3_machine_learning.deployment.app:app --host 127.0.0.1 --port 8000`,
 then check `GET /health` and `POST /predict`; the payload and expected response
-are documented in [the ML guide](machine_learning/README.md).
+are documented in [the ML guide](part3_machine_learning/README.md).
 
 The Power BI deliverable is
-[`data_analytics/reports/smart-city-traffic-dashboard.pbix`](data_analytics/reports/smart-city-traffic-dashboard.pbix).
+[`part1_data_analytics/reports/smart-city-traffic-dashboard.pbix`](part1_data_analytics/reports/smart-city-traffic-dashboard.pbix).
 Dashboard weather and temperature findings are summarized in
-[`data_analytics/reports/Power BI dashboard results.md`](data_analytics/reports/Power%20BI%20dashboard%20results.md):
+[`part1_data_analytics/reports/Power BI dashboard results.md`](part1_data_analytics/reports/Power%20BI%20dashboard%20results.md):
 Clouds has the highest average traffic (3,618.4 vehicles), Squall the lowest
 (2,061.8 vehicles), with a 1,556.7-vehicle difference. Temperature and traffic
 have a weak positive correlation (`r = 0.1303`), with the highest average traffic
 bands occurring around 25–35°C.
 
-Detailed instructions and results are in the [Data Analytics](data_analytics/README.md),
-[Python Pipeline](python_pipeline/README.md), and [Machine Learning](machine_learning/README.md)
+Detailed instructions and results are in the [Data Analytics](part1_data_analytics/README.md),
+[Python Pipeline](part2_python/README.md), and [Machine Learning](part3_machine_learning/README.md)
 guides.
 
 ## Logging Configuration
@@ -187,7 +187,7 @@ Starting in the Python pipeline work, all pipeline and application code uses Pyt
 `logging` module (never `print()` for internal status):
 - Logger created per-module via `logging.getLogger(__name__)`
 - Handlers configured only in the entry-point script(s), writing to **console**
-  and to a **log file** (`python_pipeline/logs/pipeline.log`)
+  and to a **log file** (`part2_python/logs/pipeline.log`)
 - Format includes timestamp, log level, module name and message
 - **DEBUG** – fine-grained internal values (e.g. quartile thresholds)
 - **INFO** – normal milestones (data loaded, figure saved, model saved)
@@ -199,7 +199,7 @@ Starting in the Python pipeline work, all pipeline and application code uses Pyt
 - No accident dataset was provided. The machine learning classification task uses a
   **documented proxy accident-risk label** derived from training-period upper-half
   congestion and adverse/low-visibility weather. See the completed Part 3 report
-  and `machine_learning/README.md`. This proxy demonstrates the ML workflow only
+  and `part3_machine_learning/README.md`. This proxy demonstrates the ML workflow only
   and is **not** a real accident-risk prediction.
 - The dataset represents a single corridor (westbound I-94), so travel
   recommendations focus on **timing**, not route selection.
