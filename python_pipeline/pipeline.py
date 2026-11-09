@@ -245,6 +245,9 @@ def main(argv: list[str] | None = None) -> int:
     except (OSError, ValueError, pd.errors.ParserError) as exc:
         LOGGER.error("Pipeline failed: %s", exc, exc_info=True)
         return 1
+    except Exception:
+        LOGGER.exception("Unexpected pipeline failure")
+        return 1
     return 0
 
 

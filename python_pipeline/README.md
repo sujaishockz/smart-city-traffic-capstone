@@ -112,7 +112,9 @@ that log so an end-to-end run preserves the complete event trail.
 - `DEBUG`: intermediate values such as scaling ranges and quartile thresholds.
 - `INFO`: input/output shapes, successful stages, commands, and saved figures.
 - `WARNING`: changed, dropped, or imputed records and recoverable data issues.
-- `ERROR`: a failed stage or invalid user request.
+- `ERROR`: a failed stage or invalid user request. Known pipeline failures and
+  unexpected exceptions are logged with tracebacks, and the pipeline exits with
+  a nonzero status. Interrupts such as `KeyboardInterrupt` are not swallowed.
 
 `print()` is used only for results returned to the CLI user, not for internal
 progress reporting.
