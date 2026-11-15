@@ -104,6 +104,13 @@ predictor of traffic volume. This does not prove that temperature has no effect:
 time of day, weekday, season, weather and duplicate timestamps may influence the
 observed relationship, and correlation does not imply causation.
 
+**Population note:** These Part 1 statistics use the original 48,204 CSV rows.
+The correlation uses source temperatures as recorded, including 10 invalid
+zero-Kelvin readings, and the traffic statistics include exact duplicate rows.
+Part 2 removes 17 exact duplicates and imputes physically invalid sensor values,
+so its cleaned-data correlation (0.132) is a different, more cleaned population
+and is not expected to exactly match the raw-data result (0.1303).
+
 ## Probability and Congestion Analysis (Task 3)
 
 Congestion is defined as traffic volume greater than 5,500 vehicles. Clear

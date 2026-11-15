@@ -15,8 +15,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from feature_engineering import FEATURE_OUTPUT
-from pipeline import configure_logging
+if __package__:
+    from .feature_engineering import FEATURE_OUTPUT
+    from .pipeline import configure_logging
+else:
+    from feature_engineering import FEATURE_OUTPUT
+    from pipeline import configure_logging
 
 
 LOGGER = logging.getLogger(__name__)

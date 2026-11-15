@@ -43,13 +43,13 @@ The high proxy-model scores do not establish accident-prediction ability. Do not
 - Intended purpose: educational traffic-pattern analysis and travel-timing exploration on the studied I-94 corridor.
 - Data provenance: public Metro Interstate Traffic Volume records, 2012-2018; no person-level or incident-level records were provided.
 - Human oversight: treat recommendations and anomaly flags as review aids; verify current traffic and weather before acting.
-- Versioning: model artifacts use version 1.0.0 in the model catalog; evaluation data, parameters, metrics, and model signature are recorded in MLflow.
+- Versioning: the traffic-volume regressor has active version 1.0.0 and an evaluated 1.1.0 candidate; the candidate is not promoted because both use the same holdout and need independent validation.
 - Change control: retrain only after data-quality checks and chronological evaluation; compare new subgroup metrics and drift status before replacing a model.
 - Privacy and security: this dataset contains no direct personal identifiers; keep credentials out of artifacts and restrict writable access to model/report directories in any deployed environment.
 
 ## Sustainability
 
-The saved model artifacts total 16,070,612 bytes (15.33 MB). Training and inference were run on CPU; the available AMD GPU was not used. Energy and carbon emissions were not measured, so no environmental impact estimate is claimed.
+The saved model artifacts total 16,664,510 bytes (15.89 MB). Training and inference were run on CPU; the available AMD GPU was not used. Energy and carbon emissions were not measured, so no environmental impact estimate is claimed.
 
 For a project of roughly 48,000 rows, the compact scikit-learn models avoid a continuously hosted GPU and can be reused rather than retrained for every prediction. Future runs should record wall time, hardware, memory, and energy where available, and retrain only when monitoring or new validated data justifies it.
 

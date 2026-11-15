@@ -6,6 +6,16 @@ The workflow uses the provided Metro Interstate Traffic Volume CSV, preserving t
 
 The raw file contains 48,204 rows. Cleaning removes 17 exact duplicate records and imputes 10 zero-K temperature readings and one rainfall reading above 9,000 mm, yielding 48,187 rows. The original data has 7,629 repeated timestamps, which are retained unless the complete rows are identical. The holiday field uses the source value `None` to mean no holiday; this is preserved as a no-holiday category rather than treated as a missing record.
 
+After physical-range validation and imputation, the pipeline audits numeric
+columns using Tukey's 1.5-IQR bounds and logs potential statistical outliers.
+For zero-inflated rain and snow fields, it calculates bounds over non-zero
+readings when enough such readings are available, avoiding a zero-width range.
+Statistically unusual but physically valid observations are retained rather
+than automatically clipped or deleted: rare traffic peaks may be genuine, and
+the available data has no incident labels to establish that they are errors.
+The raw-data Part 1 correlation (0.1303) includes the invalid zero-K readings;
+the cleaned-data correlation (0.132) uses the processed population above.
+
 Feature engineering adds hour, day of week, weekend and holiday flags, sine/cosine encodings for hour and weekday, one-hot weather categories, low-visibility/adverse-weather/precipitation indicators, and min-max scaled temperature, rain, snow, and cloud coverage. Congestion is categorized using traffic-volume quartiles: Low at or below Q1 (1,192.5), Medium through Q2 (3,379), High through Q3 (4,933), and Severe above Q3. These are descriptive full-dataset scaling values for this pipeline; future model evaluation must fit scaling parameters on training folds only.
 
 Four Matplotlib figures are saved: hourly traffic by weekday/weekend, average traffic by weather, temperature versus traffic, and the traffic-volume distribution. The CLI supports exact timestamp lookup, top-volume observations, weekday/weekend comparison, and a two-hour travel-timing recommendation.

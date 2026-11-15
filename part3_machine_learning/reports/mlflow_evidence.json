@@ -1,6 +1,6 @@
 {
   "experiment_name": "traffic-volume-regression",
-  "run_id": "d1451d4661544709b26080a4ca775308",
+  "run_id": "d8035075d11841d09c1379a71ac78431",
   "model_name": "traffic_volume_regressor",
   "model_version": "1.0.0",
   "algorithm": "hist_gradient_boosting",
@@ -10,5 +10,22 @@
     "r2": 0.9330539447995343
   },
   "tracking_store": "part3_machine_learning/mlruns/",
-  "run_artifact_path": "traffic-volume-regressor/"
+  "run_artifact_path": "traffic-volume-regressor/",
+  "candidate": {
+    "run_id": "0176de02b1484d1aabf0c2c87a80862c",
+    "model_version": "1.1.0",
+    "algorithm": "hist_gradient_boosting",
+    "status": "candidate_not_promoted",
+    "parameters": {
+      "max_iter": 160,
+      "l2_regularization": 1.0,
+      "random_state": 42
+    },
+    "metrics": {
+      "mae": 287.2443256043796,
+      "rmse": 508.6167982488347,
+      "r2": 0.9331797361009846
+    },
+    "artifact": "part3_machine_learning/models/traffic_volume_regressor_v1_1_0_candidate.joblib"
+  }
 }

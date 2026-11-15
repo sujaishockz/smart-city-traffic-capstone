@@ -2,6 +2,8 @@
 
 ## K-means Clusters
 
+The four-cluster solution has inertia 342997.7 and a sampled silhouette score of 0.230 (5,000 rows). The silhouette ranges from -1 to 1; higher values indicate better-separated groups. It is a diagnostic, not proof that four clusters are uniquely optimal.
+
 | Cluster | Records | Traffic level | Mean volume | Mean hour | Weekend share | Dominant weather | Dominant congestion |
 |---:|---:|---|---:|---:|---:|---|---|
 | 0 | 13700 | moderate-volume | 2570.7 | 11.4 | 100.0% | Clouds | High |

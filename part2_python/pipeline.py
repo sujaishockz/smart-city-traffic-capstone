@@ -208,6 +208,34 @@ def _clean_numeric_values(data: pd.DataFrame) -> pd.DataFrame:
     return _impute_monthly_medians(cleaned, MONTHLY_IMPUTE_COLUMNS)
 
 
+def _audit_iqr_outliers(data: pd.DataFrame) -> None:
+    for column in NUMERIC_COLUMNS:
+        values = data[column].dropna()
+        value_basis = "all readings"
+        if column in {"rain_1h", "snow_1h"} and values.gt(0).sum() >= 4:
+            values = values.loc[values.gt(0)]
+            value_basis = "non-zero readings"
+        if values.empty:
+            continue
+        first_quartile, third_quartile = values.quantile([0.25, 0.75]).to_numpy()
+        interquartile_range = third_quartile - first_quartile
+        lower_bound = first_quartile - 1.5 * interquartile_range
+        upper_bound = third_quartile + 1.5 * interquartile_range
+        outlier_count = int((values.lt(lower_bound) | values.gt(upper_bound)).sum())
+        if outlier_count:
+            LOGGER.warning(
+                "IQR audit flagged %d possible outliers in %s (%s; bounds %.3f to %.3f); "
+                "retained because statistically unusual values may be valid observations",
+                outlier_count,
+                column,
+                value_basis,
+                lower_bound,
+                upper_bound,
+            )
+        else:
+            LOGGER.info("IQR audit found no possible outliers in %s (%s)", column, value_basis)
+
+
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     """Apply documented cleaning steps while retaining non-identical timestamps."""
     cleaned = _standardize_categories(data)
@@ -215,6 +243,7 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     cleaned = _convert_numeric_columns(cleaned)
     cleaned = _remove_exact_duplicates(cleaned)
     cleaned = _clean_numeric_values(cleaned)
+    _audit_iqr_outliers(cleaned)
 
     LOGGER.info("Cleaned dataset contains %d rows and %d columns", len(cleaned), len(cleaned.columns))
     return cleaned

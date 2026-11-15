@@ -12,7 +12,7 @@ connected parts that build on one another:
 
 | Folder | Focus | Status |
 |---|---|---|
-| [`part1_data_analytics/`](part1_data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | ✅ Complete |
+| [`part1_data_analytics/`](part1_data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard package | Complete; interactive Power BI behavior needs external verification |
 | [`part2_python/`](part2_python/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
 | [`part3_machine_learning/`](part3_machine_learning/) | Supervised/unsupervised ML, neural network, explainability, MLOps, recommendations | Complete |
 
@@ -20,7 +20,7 @@ connected parts that build on one another:
 
 Update this checklist after each task is validated, committed, and pushed. Complete the milestones in order: Data Analytics, Python Pipeline, then Machine Learning and AI.
 
-### Milestone 1: Data Analytics — Complete
+### Milestone 1: Data Analytics — Core deliverables complete; Power BI interaction check pending
 
 - [x] Task 1.1: Load the CSV into SQLite and verify the loaded data.
 - [x] Task 1.2: Analyze 2012–2017 annual traffic trends, year-over-year changes, and observations.
@@ -29,9 +29,8 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 2.2: Calculate and interpret temperature/traffic correlation; explain correlation versus causation.
 - [x] Task 3: Calculate congestion/weather probabilities, conditional probabilities, independence comparison, and odds ratio.
 - [x] Task 4.1: Prepare Power Query fields, check data quality/types, and create hour, Celsius temperature, and traffic category.
-- [x] Task 4.2: Build daily, hourly, weather, and temperature/traffic dashboard visuals.
-- [x] Task 4.3: Add KPI cards and hour, weather, and traffic-category slicers.
-- [x] Deliver the SQLite/SQL work, Power BI dashboard, and 1–2 page insights report.
+- [ ] Task 4.2–4.3: Verify dashboard visuals, KPI cards, and slicers interactively in Power BI Desktop (package integrity passes; interactive verification is pending).
+- [x] Deliver the SQLite/SQL work, Power BI report package, and 1–2 page insights report.
 
 ### Milestone 2: Python Data Pipeline — Complete
 
@@ -82,12 +81,23 @@ smart-city-traffic-capstone/
 │   ├── models/                # Versioned model artifacts
 │   ├── mlruns/                # Local MLflow store (gitignored)
 │   ├── reports/               # Task metrics, final report and fairness review
-│   ├── tests/                 # 14 unit tests
+│   ├── tests/                 # 18 unit tests
 │   ├── requirements.txt
 │   └── README.md
 ├── .gitignore
 └── README.md
 ```
+
+## Reports and Outputs
+
+Each part README has a complete, clickable catalog of its generated reports and
+output artifacts:
+
+| Part | Report and output index | Main deliverables |
+|---|---|---|
+| Part 1: Data Analytics | [Open the Part 1 catalog](part1_data_analytics/README.md#reports-and-outputs) | SQL findings, Power BI reports/dashboard, SQLite database |
+| Part 2: Python Pipeline | [Open the Part 2 catalog](part2_python/README.md#reports-and-outputs) | Processed datasets, four figures, reports, pipeline log |
+| Part 3: Machine Learning | [Open the Part 3 catalog](part3_machine_learning/README.md#reports-and-outputs) | Task reports and metrics, fairness results, model artifacts, MLflow evidence |
 
 ## Tools and Technologies
 
@@ -131,6 +141,7 @@ sqlite3 -bail part1_data_analytics/db/traffic.db < part1_data_analytics/sql/06_p
 python part2_python/pipeline.py
 python part2_python/feature_engineering.py
 python part2_python/visualizations.py
+python -m unittest discover -s part2_python/tests -v
 python part2_python/mini_app/traffic_cli.py lookup '2017-01-01 08:00:00'
 python part2_python/mini_app/traffic_cli.py high-traffic --limit 3
 python part2_python/mini_app/traffic_cli.py compare-days
@@ -149,7 +160,7 @@ python -m unittest discover -s part3_machine_learning/tests -v
 python -m pip check
 ```
 
-The automated `unittest` suite covers the ML components (14 tests). Milestones
+The automated `unittest` suite covers the ML components (18 tests). Milestones
 1 and 2 are checked by running their database/analysis scripts and CLI smoke
 commands above; they do not currently have separate unit-test packages.
 

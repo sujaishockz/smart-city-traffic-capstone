@@ -10,11 +10,18 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pipeline import (
-    DEFAULT_OUTPUT as DEFAULT_CLEANED_DATA,
-    LOG_PATH,
-    configure_logging,
-)
+if __package__:
+    from .pipeline import (
+        DEFAULT_OUTPUT as DEFAULT_CLEANED_DATA,
+        LOG_PATH,
+        configure_logging,
+    )
+else:
+    from pipeline import (
+        DEFAULT_OUTPUT as DEFAULT_CLEANED_DATA,
+        LOG_PATH,
+        configure_logging,
+    )
 
 
 LOGGER = logging.getLogger(__name__)

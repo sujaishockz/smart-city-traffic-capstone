@@ -16,7 +16,9 @@
       "clouds_all_scaled",
       "traffic_volume"
     ],
-    "inertia": 342997.6736075621,
+    "inertia": 342997.67360756214,
+    "silhouette_score": 0.2302398844626683,
+    "silhouette_sample_rows": 5000,
     "profiles": [
       {
         "cluster": 0,

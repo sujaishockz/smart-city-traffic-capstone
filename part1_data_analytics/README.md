@@ -35,6 +35,34 @@ python3 sql/04_descriptive_statistics.py
 python3 sql/05_probability_congestion.py
 ```
 
+## Reports and Outputs
+
+| Artifact | What it contains |
+|---|---|
+| [SQL traffic analysis results](reports/sql_traffic_analysis_results.md) | SQL query results and written observations |
+| [Part 1 insights report](reports/part1_insights_report.md) | Consolidated findings from the analytics tasks |
+| [Power BI dashboard specification](reports/powerbi_dashboard_spec.md) | Dashboard fields, visuals, measures, and slicer requirements |
+| [Power BI dashboard results](reports/Power%20BI%20dashboard%20results.md) | Summary of dashboard findings |
+| [Power BI dashboard file](reports/smart-city-traffic-dashboard.pbix) | Power BI report package; interactive visuals and slicers still require Desktop verification |
+| [SQLite database](db/traffic.db) | Database generated from the source CSV |
+
+The source dataset is [Metro Interstate Traffic Volume](data/Metro_Interstate_Traffic_Volume.csv).
+
+### Task-to-Output Map
+
+| Task | Output and report files |
+|---|---|
+| 1.1 Load CSV into SQLite | [SQLite database](db/traffic.db); [load verification and query results](reports/sql_traffic_analysis_results.md) |
+| 1.2 Annual traffic trends | [SQL results and observations](reports/sql_traffic_analysis_results.md); [Part 1 insights](reports/part1_insights_report.md) |
+| 1.3 Holiday temperature analysis | [SQL results and observations](reports/sql_traffic_analysis_results.md); [Part 1 insights](reports/part1_insights_report.md) |
+| 2.1 Descriptive statistics | [Statistics results](reports/sql_traffic_analysis_results.md); [Part 1 insights](reports/part1_insights_report.md) |
+| 2.2 Temperature/traffic correlation | [Correlation results](reports/sql_traffic_analysis_results.md); [Part 1 insights](reports/part1_insights_report.md) |
+| 3 Probability and congestion | [Probability results](reports/sql_traffic_analysis_results.md); [Part 1 insights](reports/part1_insights_report.md) |
+| 4.1 Power Query preparation | [Power BI queries](sql/06_powerbi_queries.sql); [dashboard specification](reports/powerbi_dashboard_spec.md) |
+| 4.2 Dashboard visuals | [Power BI dashboard](reports/smart-city-traffic-dashboard.pbix); [dashboard findings](reports/Power%20BI%20dashboard%20results.md) |
+| 4.3 KPI cards and slicers | [Power BI dashboard](reports/smart-city-traffic-dashboard.pbix); [dashboard specification](reports/powerbi_dashboard_spec.md) |
+| Final insights report | [Part 1 insights report](reports/part1_insights_report.md) |
+
 ## Power BI Dashboard Results
 
 The consolidated weather and temperature findings are documented in
@@ -57,8 +85,7 @@ The consolidated weather and temperature findings are documented in
       (see `reports/sql_traffic_analysis_results.md`).
 - [x] Descriptive Statistics and Correlation
 - [x] Probability and Congestion Analysis
-- [x] Power BI Traffic Intelligence Dashboard (prepared SQL view, specification,
-      and [`smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix) deliverable)
+- [x] Power BI preparation query, specification, and [`smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix) package are present; interactive behavior is not verified on this macOS environment.
 - [x] Power BI Dashboard Results Summary: Weather and temperature findings are complete in [`reports/Power BI dashboard results.md`](reports/Power%20BI%20dashboard%20results.md).
 
 ## How to Run
@@ -94,7 +121,7 @@ The consolidated weather and temperature findings are documented in
 
 ## Power BI Dashboard Manual Check
 
-The completed dashboard is
+The Power BI report package is
 [`reports/smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix).
 On macOS, check its package integrity with:
 

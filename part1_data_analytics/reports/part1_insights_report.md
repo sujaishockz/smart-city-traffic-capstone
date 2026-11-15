@@ -37,6 +37,12 @@ predictor of traffic. This is an association rather than a causal conclusion;
 time of day, weekday, season, weather category and duplicate timestamps are
 important confounding factors.
 
+These Part 1 calculations use all 48,204 raw source rows; the correlation also
+includes the 10 source temperature readings recorded as invalid 0 K. Part 2
+removes 17 exact duplicates and imputes physically invalid sensor values, so its
+cleaned-data correlation of 0.132 uses a different population. The two values
+should not be compared as if they were calculated from identical inputs.
+
 ## Probability and congestion
 
 Using traffic volume greater than 5,500 as congestion, the probability of

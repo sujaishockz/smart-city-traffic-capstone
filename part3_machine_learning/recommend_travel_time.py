@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
+from datetime import datetime
 from pathlib import Path
 
 import joblib
@@ -20,6 +22,34 @@ LOGGER = logging.getLogger(__name__)
 DEFAULT_OUTPUT = Path(__file__).resolve().parent
 DEFAULT_MODEL = DEFAULT_OUTPUT / "models" / "traffic_volume_regressor.joblib"
 WEATHER_NUMERIC_FEATURES = ("temp", "rain_1h", "snow_1h", "clouds_all")
+
+
+def _parse_time_window(time_window: str | None) -> tuple[int, int]:
+    if time_window is None:
+        return 0, 24
+    parts = re.fullmatch(r"\s*(.*?)\s*-\s*(.*?)\s*", time_window)
+    if not parts:
+        raise ValueError("time_window must look like '12pm-5pm' or '12:00-17:00'")
+
+    def parse_endpoint(value: str, is_end: bool) -> int:
+        normalized = value.strip().upper().replace(" ", "")
+        if is_end and normalized == "24:00":
+            return 24
+        for time_format in ("%I%p", "%I:%M%p", "%H:%M", "%H"):
+            try:
+                parsed = datetime.strptime(normalized, time_format)
+            except ValueError:
+                continue
+            if parsed.minute:
+                break
+            return parsed.hour
+        raise ValueError("time_window endpoints must be whole hours from 00:00 to 24:00")
+
+    start_hour = parse_endpoint(parts.group(1), is_end=False)
+    end_hour = parse_endpoint(parts.group(2), is_end=True)
+    if not 0 <= start_hour < end_hour <= 24:
+        raise ValueError("time_window must be a same-day range with end after start")
+    return start_hour, end_hour
 
 
 def build_candidate_features(
@@ -73,14 +103,18 @@ def recommend_for_conditions(
     month: int = 6,
     window_hours: int = 2,
     top_n: int = 3,
+    time_window: str | None = None,
 ) -> dict[str, object]:
     if not 1 <= window_hours <= 24 or top_n < 1:
         raise ValueError("window_hours must be 1-24 and top_n must be positive")
+    window_start, window_end = _parse_time_window(time_window)
+    if window_end - window_start < window_hours:
+        raise ValueError("time_window must be at least as long as window_hours")
     features, weather_records = build_candidate_features(history, day_type, weather, month)
     features["predicted_traffic"] = model.predict(features)
     hourly = features.groupby("hour", as_index=False)["predicted_traffic"].mean()
     windows = []
-    for start_hour in range(24 - window_hours + 1):
+    for start_hour in range(window_start, window_end - window_hours + 1):
         segment = hourly.iloc[start_hour : start_hour + window_hours]
         windows.append(
             {
@@ -109,6 +143,7 @@ def recommend_for_conditions(
         "day_type": day_type,
         "weather": weather.strip().title(),
         "month": month,
+        "time_window": f"{window_start:02d}:00-{window_end:02d}:00",
         "weather_history_records": weather_records,
         "model": "hist_gradient_boosting traffic-volume regressor",
         "windows": selected,
@@ -161,6 +196,10 @@ def main() -> int:
     parser.add_argument("--day-type", choices=("weekday", "weekend"), help="Day group to recommend")
     parser.add_argument("--weather", help="Observed weather category, e.g. Clear or Rain")
     parser.add_argument("--month", type=int, default=6, help="Representative month (1-12)")
+    parser.add_argument(
+        "--time-window",
+        help="Restrict recommendations to a same-day time range, e.g. 12pm-5pm or 12:00-17:00",
+    )
     parser.add_argument("--top", type=int, default=3, help="Number of non-overlapping windows to return")
     parser.add_argument("--report", action="store_true", help="Generate batch recommendations for common weather")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT, help="Machine-learning output folder")
@@ -175,8 +214,19 @@ def main() -> int:
         else:
             if not args.day_type or not args.weather:
                 parser.error("--day-type and --weather are required unless --report is used")
-            result = recommend_for_conditions(model, history, args.day_type, args.weather, args.month, top_n=args.top)
-            print(f"Low-traffic windows for {result['day_type']} / {result['weather']} in month {result['month']}:")
+            result = recommend_for_conditions(
+                model,
+                history,
+                args.day_type,
+                args.weather,
+                args.month,
+                top_n=args.top,
+                time_window=args.time_window,
+            )
+            print(
+                f"Low-traffic windows for {result['day_type']} / {result['weather']} "
+                f"in month {result['month']} within {result['time_window']}:"
+            )
             for window in result["windows"]:
                 print(f"  {window['window']}: estimated {window['mean_predicted_traffic']:.0f} vehicles/hour")
             print(f"Weather profile based on {result['weather_history_records']} historical records.")

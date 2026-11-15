@@ -16,7 +16,7 @@ The proxy is positive for upper-half congestion combined with adverse or low-vis
 
 ### Task 2: Unsupervised Patterns
 
-K-means formed four condition clusters. The largest contains 18,505 observations (high-volume; mean volume 5232). The strongest association rule has lift 3.83 and support 0.098. These are descriptive co-occurrences, not causal rules.
+K-means formed four condition clusters. The largest contains 18,505 observations (high-volume; mean volume 5232). The sampled silhouette score is 0.230 across 5,000 rows. The strongest association rule has lift 3.83 and support 0.098. These are descriptive co-occurrences, not causal rules.
 
 ### Task 3: Neural Network and Explainability
 
@@ -32,11 +32,11 @@ The traffic regressor ranks two-hour windows by day type, month, and observed we
 
 ### Task 6: MLOps
 
-Five artifacts are catalogued at version 1.0.0. MLflow run `d1451d4661544709b26080a4ca775308` tracks the traffic regressor and its chronological holdout metrics. A FastAPI simulation serves the regression model. PSI monitoring reports **ALERT/Requires investigation** for the recent holdout; `clouds_all_scaled` PSI is 0.390 against a 0.2 threshold. A controlled +50% traffic shift also exercises the ALERT path.
+The traffic regressor's active version 1.0.0 (RMSE 509.10) is compared with candidate 1.1.0 (RMSE 508.62). The candidate is not promoted because both use the same chronological holdout; independent validation is required. MLflow runs `d8035075d11841d09c1379a71ac78431` and `0176de02b1484d1aabf0c2c87a80862c` track the active and candidate artifacts. A FastAPI simulation serves version 1.0.0. PSI monitoring reports **ALERT/Requires investigation** for the recent holdout; `clouds_all_scaled` PSI is 0.390 against a 0.2 threshold. A controlled +50% traffic shift also exercises the ALERT path.
 
 ### Task 7: Responsible AI
 
-Subgroup diagnostics compare weekday/weekend and weather segments. There are no demographic attributes, so a formal protected-group fairness audit is not possible. Combined model artifact size is 15.33 MB; training ran on CPU. Energy and carbon were not measured.
+Subgroup diagnostics compare weekday/weekend and weather segments. There are no demographic attributes, so a formal protected-group fairness audit is not possible. Combined model artifact size is 15.89 MB; training ran on CPU. Energy and carbon were not measured.
 
 ## Limitations and Use Boundaries
 

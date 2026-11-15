@@ -1,6 +1,8 @@
 """Focused tests for API model serving and distribution drift detection."""
 
+import json
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -8,6 +10,7 @@ from fastapi.testclient import TestClient
 
 from part3_machine_learning.deployment.app import app
 from part3_machine_learning.monitor_drift import evaluate_drift, population_stability_index
+from part3_machine_learning.run_mlops import _model_catalog
 
 
 class MLOpsTests(unittest.TestCase):
@@ -46,6 +49,22 @@ class MLOpsTests(unittest.TestCase):
             evaluate_drift(pd.DataFrame({"x": reference}), pd.DataFrame({"x": shifted}), ("x",))["status"],
             "ALERT/Requires investigation",
         )
+
+    def test_model_catalog_versions_are_bound_to_artifact_hashes(self):
+        reports = Path(__file__).resolve().parents[1] / "reports"
+        evidence = json.loads((reports / "mlflow_evidence.json").read_text(encoding="utf-8"))
+        catalog = _model_catalog(evidence["candidate"]["metrics"])
+
+        self.assertEqual(catalog["versioning"]["active_traffic_regressor_version"], "1.0.0")
+        self.assertEqual(catalog["versioning"]["candidate_traffic_regressor_version"], "1.1.0")
+        self.assertEqual(len(catalog["models"]), 5)
+        self.assertTrue(all(len(model["artifact_sha256"]) == 64 for model in catalog["models"]))
+        versions = catalog["traffic_volume_regressor_versions"]
+        self.assertEqual([item["version"] for item in versions], ["1.0.0", "1.1.0"])
+        self.assertEqual(versions[1]["status"], "candidate_not_promoted")
+        self.assertEqual(versions[0]["parameters"]["max_iter"], 120)
+        self.assertEqual(versions[1]["parameters"]["max_iter"], 160)
+        self.assertTrue(all(len(item["artifact_sha256"]) == 64 for item in versions))
 
 
 if __name__ == "__main__":

@@ -129,7 +129,7 @@ def _write_fairness_report(result: dict[str, object], output_dir: Path) -> None:
             "- Intended purpose: educational traffic-pattern analysis and travel-timing exploration on the studied I-94 corridor.",
             "- Data provenance: public Metro Interstate Traffic Volume records, 2012-2018; no person-level or incident-level records were provided.",
             "- Human oversight: treat recommendations and anomaly flags as review aids; verify current traffic and weather before acting.",
-            "- Versioning: model artifacts use version 1.0.0 in the model catalog; evaluation data, parameters, metrics, and model signature are recorded in MLflow.",
+            "- Versioning: the traffic-volume regressor has active version 1.0.0 and an evaluated 1.1.0 candidate; the candidate is not promoted because both use the same holdout and need independent validation.",
             "- Change control: retrain only after data-quality checks and chronological evaluation; compare new subgroup metrics and drift status before replacing a model.",
             "- Privacy and security: this dataset contains no direct personal identifiers; keep credentials out of artifacts and restrict writable access to model/report directories in any deployed environment.",
             "",
@@ -191,6 +191,7 @@ def analyze_responsible_ai(
     }
     artifact_names = [
         "traffic_volume_regressor.joblib",
+        "traffic_volume_regressor_v1_1_0_candidate.joblib",
         "traffic_risk_classifier.joblib",
         "traffic_risk_neural_network.joblib",
         "traffic_condition_kmeans.joblib",
@@ -247,6 +248,7 @@ def _write_final_report(responsible_ai: dict[str, object]) -> None:
     recommendations = json.loads((ROOT / "reports" / "travel_recommendations.json").read_text(encoding="utf-8"))
     drift = json.loads((ROOT / "reports" / "drift_monitoring.json").read_text(encoding="utf-8"))
     mlflow_evidence = json.loads((ROOT / "reports" / "mlflow_evidence.json").read_text(encoding="utf-8"))
+    candidate = mlflow_evidence["candidate"]
     selected_regression = regression["regression"]["models"][regression["regression"]["selected_model"]]
     selected_classification = regression["classification"]["models"][regression["classification"]["selected_model"]]
     largest_cluster = max(patterns["clustering"]["profiles"], key=lambda profile: profile["records"])
@@ -274,7 +276,7 @@ def _write_final_report(responsible_ai: dict[str, object]) -> None:
         "",
         "### Task 2: Unsupervised Patterns",
         "",
-        f"K-means formed four condition clusters. The largest contains {largest_cluster['records']:,} observations ({largest_cluster['traffic_level']}; mean volume {largest_cluster['mean_traffic_volume']:.0f}). The strongest association rule has lift {strongest_rule['lift']:.2f} and support {strongest_rule['support']:.3f}. These are descriptive co-occurrences, not causal rules.",
+        f"K-means formed four condition clusters. The largest contains {largest_cluster['records']:,} observations ({largest_cluster['traffic_level']}; mean volume {largest_cluster['mean_traffic_volume']:.0f}). The sampled silhouette score is {patterns['clustering']['silhouette_score']:.3f} across {patterns['clustering']['silhouette_sample_rows']:,} rows. The strongest association rule has lift {strongest_rule['lift']:.2f} and support {strongest_rule['support']:.3f}. These are descriptive co-occurrences, not causal rules.",
         "",
         "### Task 3: Neural Network and Explainability",
         "",
@@ -290,7 +292,7 @@ def _write_final_report(responsible_ai: dict[str, object]) -> None:
         "",
         "### Task 6: MLOps",
         "",
-        f"Five artifacts are catalogued at version 1.0.0. MLflow run `{mlflow_evidence['run_id']}` tracks the traffic regressor and its chronological holdout metrics. A FastAPI simulation serves the regression model. PSI monitoring reports **{drift['status']}** for the recent holdout; `clouds_all_scaled` PSI is {drift['observed_holdout']['features']['clouds_all_scaled']:.3f} against a 0.2 threshold. A controlled +50% traffic shift also exercises the ALERT path.",
+        f"The traffic regressor's active version 1.0.0 (RMSE {mlflow_evidence['metrics']['rmse']:.2f}) is compared with candidate 1.1.0 (RMSE {candidate['metrics']['rmse']:.2f}). The candidate is not promoted because both use the same chronological holdout; independent validation is required. MLflow runs `{mlflow_evidence['run_id']}` and `{candidate['run_id']}` track the active and candidate artifacts. A FastAPI simulation serves version 1.0.0. PSI monitoring reports **{drift['status']}** for the recent holdout; `clouds_all_scaled` PSI is {drift['observed_holdout']['features']['clouds_all_scaled']:.3f} against a 0.2 threshold. A controlled +50% traffic shift also exercises the ALERT path.",
         "",
         "### Task 7: Responsible AI",
         "",

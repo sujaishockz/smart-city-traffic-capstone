@@ -8,7 +8,7 @@ final Part 3 report and fairness/governance report are included.
 ```
 part3_machine_learning/
 ├── notebooks/             # Reserved scaffold; current workflows are scripts
-├── models/                # Trained classifiers, regressors, clusterers and detector
+├── models/                # Trained models, including the unpromoted regressor candidate
 ├── mlruns/                # MLflow tracking data (gitignored — see .gitignore)
 ├── deployment/
 │   └── app.py              # FastAPI model-serving simulation
@@ -44,6 +44,62 @@ part3_machine_learning/
 ├── train_supervised.py
 └── README.md
 ```
+
+## Reports and Outputs
+
+### Task-to-Output Map
+
+| Task | Output and report files |
+|---|---|
+| 1 Supervised classification and regression | [Metrics](reports/supervised_metrics.json); [risk classifier](models/traffic_risk_classifier.joblib); [traffic-volume regressor](models/traffic_volume_regressor.joblib) |
+| 2 K-means and association rules | [Readable analysis](reports/pattern_analysis.md); [structured results](reports/pattern_analysis.json); [row assignments](reports/cluster_assignments.csv); [K-means model](models/traffic_condition_kmeans.joblib) |
+| 3 Neural network and LIME | [Readable explanations](reports/neural_explainability.md); [structured explanations](reports/neural_explainability.json); [MLP model](models/traffic_risk_neural_network.joblib) |
+| 4 Advanced technique: Isolation Forest | [Detection report](reports/anomaly_detection.md); [monitoring results](reports/anomaly_monitoring.json); [scored records](reports/anomaly_scores.csv); [Isolation Forest model](models/traffic_condition_isolation_forest.joblib) |
+| 5 Travel-timing recommendations | [Readable recommendations](reports/travel_recommendations.md); [structured recommendations](reports/travel_recommendations.json) |
+| 6.1 Model versions and performance | [Model catalog](reports/model_versions.json) |
+| 6.2 MLflow experiment tracking | [MLflow evidence](reports/mlflow_evidence.json); local run artifacts in the gitignored `mlruns/` folder |
+| 6.3 Model-serving simulation | [FastAPI application](deployment/app.py); [served traffic-volume model](models/traffic_volume_regressor.joblib) |
+| 6.4–6.5 Drift monitoring and status | [Readable drift report](reports/drift_monitoring.md); [drift metrics and alert status](reports/drift_monitoring.json) |
+| 7 Responsible and sustainable AI | [Fairness/governance report](reports/bias_fairness/bias_fairness_governance_sustainability.md); [fairness metrics](reports/bias_fairness/bias_fairness_metrics.json) |
+| Integrated final report | [Part 3 final report](reports/part3_final_report.md) |
+
+### Reports
+
+| Artifact | What it contains |
+|---|---|
+| [Supervised metrics](reports/supervised_metrics.json) | Classification and traffic-volume regression metrics and selected models |
+| [Pattern analysis report](reports/pattern_analysis.md) | Human-readable K-means cluster profiles and highest-lift rules |
+| [Pattern analysis data](reports/pattern_analysis.json) | Structured cluster profiles, rule metrics, and limitations |
+| [Cluster assignments](reports/cluster_assignments.csv) | Cluster ID assigned to each timestamp |
+| [Neural explainability report](reports/neural_explainability.md) | MLP holdout metrics and per-example LIME explanations |
+| [Neural explainability data](reports/neural_explainability.json) | Structured MLP metrics and LIME explanations |
+| [Anomaly detection report](reports/anomaly_detection.md) | Isolation Forest method, holdout result, value, and limitations |
+| [Anomaly monitoring data](reports/anomaly_monitoring.json) | Holdout anomaly totals, weekly rates, top records, and caveats |
+| [Anomaly scores](reports/anomaly_scores.csv) | Scored holdout records, sorted by anomaly score |
+| [Travel recommendations report](reports/travel_recommendations.md) | Recommended two-hour travel windows and interpretation |
+| [Travel recommendations data](reports/travel_recommendations.json) | Structured recommendation results and supporting counts |
+| [Model versions catalog](reports/model_versions.json) | Model artifact paths, algorithms, versions, and metrics |
+| [MLflow evidence](reports/mlflow_evidence.json) | Tracked experiment run ID and metric summary |
+| [Drift monitoring report](reports/drift_monitoring.md) | PSI monitoring results and status explanation |
+| [Drift monitoring data](reports/drift_monitoring.json) | Structured feature drift metrics and alert status |
+| [Fairness and governance report](reports/bias_fairness/bias_fairness_governance_sustainability.md) | Subgroup results, governance, and sustainability discussion |
+| [Fairness metrics](reports/bias_fairness/bias_fairness_metrics.json) | Structured weekday/weekend and weather subgroup metrics |
+| [Part 3 final report](reports/part3_final_report.md) | Integrated summary of all Part 3 tasks, findings, and limitations |
+
+### Saved Models
+
+| Artifact | Model |
+|---|---|
+| [Traffic-risk classifier](models/traffic_risk_classifier.joblib) | Selected supervised proxy-risk classifier |
+| [Traffic-volume regressor](models/traffic_volume_regressor.joblib) | Selected traffic-volume regression model |
+| [Traffic-volume regressor v1.1 candidate](models/traffic_volume_regressor_v1_1_0_candidate.joblib) | Max-iteration candidate; evaluated but not promoted |
+| [K-means clusterer](models/traffic_condition_kmeans.joblib) | Fitted traffic-condition clustering pipeline |
+| [Neural network](models/traffic_risk_neural_network.joblib) | Fitted MLP proxy-risk classifier |
+| [Isolation Forest](models/traffic_condition_isolation_forest.joblib) | Fitted traffic-condition anomaly detector |
+
+The local MLflow run store is under `mlruns/` and is gitignored; its shareable
+summary is [mlflow_evidence.json](reports/mlflow_evidence.json). Commands for
+regenerating these reports and models are listed in each task section below.
 
 ## Important Note — No Accident Dataset
 
@@ -137,6 +193,10 @@ confidence 0.886 and lift 3.54. These describe historical co-occurrences on
 one corridor; neither clusters nor rules imply causation or generalize
 automatically to other roads.
 
+The generated pattern report also records inertia and a deterministic silhouette
+score calculated on a sample of up to 5,000 scaled rows. Silhouette is a cluster
+separation diagnostic, not proof that four clusters are uniquely optimal.
+
 ## Neural Network and LIME (Task 3)
 
 Run the CPU MLP and local LIME explanations with:
@@ -186,6 +246,7 @@ conditions, or request a specific recommendation:
 ```bash
 python part3_machine_learning/recommend_travel_time.py --report
 python part3_machine_learning/recommend_travel_time.py --day-type weekend --weather Clear --month 6
+python part3_machine_learning/recommend_travel_time.py --day-type weekday --weather Clear --month 1 --time-window 12pm-5pm
 ```
 
 The recommender loads the Task 1 traffic-volume regressor, supplies median
@@ -193,17 +254,25 @@ historical numeric weather measurements for the requested weather class, and
 ranks non-overlapping two-hour windows. For a June weekend with Clear weather,
 the top estimated window is 03:00-05:00 at about 452 vehicles/hour. The report
 includes the historical support count and can be regenerated for a different
-month. Results are based on 2012-2018 corridor data, assume a non-holiday, and
-are not real-time forecasts or route recommendations.
+month. Use `--time-window 12pm-5pm` (or `--time-window 12:00-17:00`) to restrict
+the ranked windows to a same-day period; the range must fit at least one full
+two-hour recommendation. Results are based on 2012-2018 corridor data, assume a
+non-holiday, and are not real-time forecasts or route recommendations.
 
 ## MLOps Simulation (Task 6)
 
 ### Model Versions and MLflow
 
 The version/performance catalog in `part3_machine_learning/reports/model_versions.json`
-lists the five persisted models as version `1.0.0`, their artifact paths,
-algorithms, scikit-learn version, and task-specific metrics. Log the selected
-traffic-volume model to the local MLflow experiment store with:
+lists five model families and fingerprints each artifact. The traffic regressor
+has active version `1.0.0` (RMSE 509.10) and a `1.1.0` candidate (RMSE 508.62,
+MAE 287.24, R-squared 0.9332). The candidate changes `max_iter` from 120 to 160
+and is deliberately not promoted: both results use the same holdout, so an
+independent validation is needed before deployment. `run_mlops.py` logs both
+versions to MLflow; repeated runs do not create new model versions.
+
+Run the MLOps workflow to reproduce the candidate evaluation, MLflow runs, and
+catalog:
 
 ```bash
 python part3_machine_learning/run_mlops.py

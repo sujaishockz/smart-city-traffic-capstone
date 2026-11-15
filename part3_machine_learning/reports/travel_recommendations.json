@@ -3,6 +3,7 @@
     "day_type": "weekday",
     "weather": "Clouds",
     "month": 6,
+    "time_window": "00:00-24:00",
     "weather_history_records": 15158,
     "model": "hist_gradient_boosting traffic-volume regressor",
     "windows": [
@@ -24,6 +25,7 @@
     "day_type": "weekday",
     "weather": "Clear",
     "month": 6,
+    "time_window": "00:00-24:00",
     "weather_history_records": 13384,
     "model": "hist_gradient_boosting traffic-volume regressor",
     "windows": [
@@ -45,6 +47,7 @@
     "day_type": "weekday",
     "weather": "Mist",
     "month": 6,
+    "time_window": "00:00-24:00",
     "weather_history_records": 5949,
     "model": "hist_gradient_boosting traffic-volume regressor",
     "windows": [
@@ -66,6 +69,7 @@
     "day_type": "weekend",
     "weather": "Clouds",
     "month": 6,
+    "time_window": "00:00-24:00",
     "weather_history_records": 15158,
     "model": "hist_gradient_boosting traffic-volume regressor",
     "windows": [
@@ -87,6 +91,7 @@
     "day_type": "weekend",
     "weather": "Clear",
     "month": 6,
+    "time_window": "00:00-24:00",
     "weather_history_records": 13384,
     "model": "hist_gradient_boosting traffic-volume regressor",
     "windows": [
@@ -108,6 +113,7 @@
     "day_type": "weekend",
     "weather": "Mist",
     "month": 6,
+    "time_window": "00:00-24:00",
     "weather_history_records": 5949,
     "model": "hist_gradient_boosting traffic-volume regressor",
     "windows": [

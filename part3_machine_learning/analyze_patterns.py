@@ -11,6 +11,7 @@ import joblib
 import pandas as pd
 from mlxtend.frequent_patterns import apriori, association_rules
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -170,7 +171,18 @@ def analyze_patterns(
         ]
     )
     LOGGER.info("Fitting K-means with %d clusters over %d rows", n_clusters, len(data))
-    labels = pd.Series(clusterer.fit_predict(data.loc[:, CLUSTER_FEATURES]), index=data.index, name="cluster")
+    cluster_features = data.loc[:, CLUSTER_FEATURES]
+    labels = pd.Series(clusterer.fit_predict(cluster_features), index=data.index, name="cluster")
+    scaled_features = clusterer.named_steps["scale"].transform(cluster_features)
+    silhouette_sample_rows = min(5000, len(data))
+    cluster_silhouette = float(
+        silhouette_score(
+            scaled_features,
+            labels,
+            sample_size=silhouette_sample_rows,
+            random_state=42,
+        )
+    )
     profiles = _cluster_profiles(data, labels)
     transactions = encode_transactions(data)
     LOGGER.info("Mining association rules with support >= %.3f and lift >= %.2f", min_support, min_lift)
@@ -193,6 +205,8 @@ def analyze_patterns(
             "clusters": n_clusters,
             "features": list(CLUSTER_FEATURES),
             "inertia": float(clusterer.named_steps["kmeans"].inertia_),
+            "silhouette_score": cluster_silhouette,
+            "silhouette_sample_rows": silhouette_sample_rows,
             "profiles": profiles,
         },
         "association_rules": {
@@ -214,6 +228,8 @@ def analyze_patterns(
         "# Traffic Pattern Analysis",
         "",
         "## K-means Clusters",
+        "",
+        f"The four-cluster solution has inertia {result['clustering']['inertia']:.1f} and a sampled silhouette score of {cluster_silhouette:.3f} ({silhouette_sample_rows:,} rows). The silhouette ranges from -1 to 1; higher values indicate better-separated groups. It is a diagnostic, not proof that four clusters are uniquely optimal.",
         "",
         "| Cluster | Records | Traffic level | Mean volume | Mean hour | Weekend share | Dominant weather | Dominant congestion |",
         "|---:|---:|---|---:|---:|---:|---|---|",

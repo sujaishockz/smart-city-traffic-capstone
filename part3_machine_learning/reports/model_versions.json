@@ -1,6 +1,13 @@
 {
   "schema_version": "1.0",
   "sklearn_version": "1.6.1",
+  "versioning": {
+    "scheme": "semantic version string",
+    "active_traffic_regressor_version": "1.0.0",
+    "candidate_traffic_regressor_version": "1.1.0",
+    "candidate_status": "not promoted; evaluated on the same chronological holdout and requires independent validation",
+    "policy": "Create a new version for a changed model artifact after evaluation; do not treat a repeated MLflow run as a new model version."
+  },
   "models": [
     {
       "name": "traffic_volume_regressor",
@@ -11,7 +18,8 @@
         "mae": 287.3652681454976,
         "rmse": 509.0953169097043,
         "r2": 0.9330539447995343
-      }
+      },
+      "artifact_sha256": "8c5a7bd2059772f2ce36df1e7ec6bdcbfd8c7fdf56827a813b0548f7f5461538"
     },
     {
       "name": "traffic_risk_proxy_classifier",
@@ -24,7 +32,8 @@
         "recall": 0.9752475247524752,
         "f1": 0.9338705854467884,
         "roc_auc": 0.9923318014395297
-      }
+      },
+      "artifact_sha256": "4ebab51b9f76c8dbe01b81e2b978b06eeba09bd161b38f2e9b11aa53e0db39d5"
     },
     {
       "name": "traffic_risk_neural_network",
@@ -37,7 +46,8 @@
         "recall": 0.9589108910891089,
         "f1": 0.9346200241254523,
         "roc_auc": 0.9921395782266597
-      }
+      },
+      "artifact_sha256": "645227b4eec3eabad6e4396aba24d3c388849bc6ed1321af03f8682a07a426b2"
     },
     {
       "name": "traffic_condition_kmeans",
@@ -46,8 +56,9 @@
       "algorithm": "KMeans",
       "metrics": {
         "clusters": 4,
-        "inertia": 342997.6736075621
-      }
+        "inertia": 342997.67360756214
+      },
+      "artifact_sha256": "06a9490559a4d39b9c1766c969d8e51761f82c50bdcf10ac713be8dcf3a24566"
     },
     {
       "name": "traffic_condition_isolation_forest",
@@ -57,7 +68,46 @@
       "metrics": {
         "holdout_anomaly_rate": 0.02521269973023449,
         "holdout_anomaly_count": 243
-      }
+      },
+      "artifact_sha256": "fc07386bc5d56b910f1d6bc06c5c90618e8f5309b7ccad27afb558b9a0944f8b"
+    }
+  ],
+  "traffic_volume_regressor_versions": [
+    {
+      "name": "traffic_volume_regressor",
+      "version": "1.0.0",
+      "status": "active",
+      "artifact": "part3_machine_learning/models/traffic_volume_regressor.joblib",
+      "algorithm": "hist_gradient_boosting",
+      "parameters": {
+        "max_iter": 120,
+        "l2_regularization": 1.0,
+        "random_state": 42
+      },
+      "metrics": {
+        "mae": 287.3652681454976,
+        "rmse": 509.0953169097043,
+        "r2": 0.9330539447995343
+      },
+      "artifact_sha256": "8c5a7bd2059772f2ce36df1e7ec6bdcbfd8c7fdf56827a813b0548f7f5461538"
+    },
+    {
+      "name": "traffic_volume_regressor",
+      "version": "1.1.0",
+      "status": "candidate_not_promoted",
+      "artifact": "part3_machine_learning/models/traffic_volume_regressor_v1_1_0_candidate.joblib",
+      "algorithm": "hist_gradient_boosting",
+      "parameters": {
+        "max_iter": 160,
+        "l2_regularization": 1.0,
+        "random_state": 42
+      },
+      "metrics": {
+        "mae": 287.2443256043796,
+        "rmse": 508.6167982488347,
+        "r2": 0.9331797361009846
+      },
+      "artifact_sha256": "0be1087564dc20ba5092c98fd1451ef44c7247f5aceae1a9b1ff54aca7bf3dd5"
     }
   ]
 }

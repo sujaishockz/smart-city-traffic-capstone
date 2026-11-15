@@ -233,13 +233,14 @@
     "scikit_learn_version": "1.6.1",
     "model_artifact_sizes_bytes": {
       "traffic_volume_regressor.joblib": 448602,
+      "traffic_volume_regressor_v1_1_0_candidate.joblib": 593898,
       "traffic_risk_classifier.joblib": 11459947,
       "traffic_risk_neural_network.joblib": 93498,
       "traffic_condition_kmeans.joblib": 194965,
       "traffic_condition_isolation_forest.joblib": 3873600
     },
-    "total_model_bytes": 16070612,
-    "total_model_megabytes": 15.326129913330078,
+    "total_model_bytes": 16664510,
+    "total_model_megabytes": 15.892515182495117,
     "energy_or_carbon_measured": false
   }
 }

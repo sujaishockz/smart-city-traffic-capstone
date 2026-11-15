@@ -39,6 +39,20 @@ class TravelRecommendationTests(unittest.TestCase):
         self.assertEqual([item["window"] for item in result["windows"]], ["00:00-02:00", "02:00-04:00"])
         self.assertTrue(all(item["mean_predicted_traffic"] >= 0 for item in result["windows"]))
 
+    def test_recommendations_are_limited_to_requested_time_window(self):
+        result = recommend_for_conditions(
+            HourBasedModel(), self.history, "weekday", "Clear", time_window="12pm-5pm"
+        )
+
+        self.assertEqual(result["time_window"], "12:00-17:00")
+        self.assertEqual([item["window"] for item in result["windows"]], ["12:00-14:00", "14:00-16:00"])
+
+    def test_time_window_must_fit_recommendation_duration(self):
+        with self.assertRaisesRegex(ValueError, "at least as long"):
+            recommend_for_conditions(
+                HourBasedModel(), self.history, "weekday", "Clear", time_window="12pm-1pm"
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
