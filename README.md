@@ -12,7 +12,7 @@ connected parts that build on one another:
 
 | Folder | Focus | Status |
 |---|---|---|
-| [`part1_data_analytics/`](part1_data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard package | Complete; interactive Power BI behavior needs external verification |
+| [`part1_data_analytics/`](part1_data_analytics/) | SQL analysis, descriptive statistics, probability, Power BI dashboard | Complete; dashboard interaction verification completed |
 | [`part2_python/`](part2_python/) | Reproducible Python pipeline, feature engineering, visualisations, CLI app | ✅ Complete |
 | [`part3_machine_learning/`](part3_machine_learning/) | Supervised/unsupervised ML, neural network, explainability, MLOps, recommendations | Complete |
 
@@ -20,7 +20,7 @@ connected parts that build on one another:
 
 Update this checklist after each task is validated, committed, and pushed. Complete the milestones in order: Data Analytics, Python Pipeline, then Machine Learning and AI.
 
-### Milestone 1: Data Analytics — Core deliverables complete; Power BI interaction check pending
+### Milestone 1: Data Analytics — Complete
 
 - [x] Task 1.1: Load the CSV into SQLite and verify the loaded data.
 - [x] Task 1.2: Analyze 2012–2017 annual traffic trends, year-over-year changes, and observations.
@@ -29,7 +29,7 @@ Update this checklist after each task is validated, committed, and pushed. Compl
 - [x] Task 2.2: Calculate and interpret temperature/traffic correlation; explain correlation versus causation.
 - [x] Task 3: Calculate congestion/weather probabilities, conditional probabilities, independence comparison, and odds ratio.
 - [x] Task 4.1: Prepare Power Query fields, check data quality/types, and create hour, Celsius temperature, and traffic category.
-- [ ] Task 4.2–4.3: Verify dashboard visuals, KPI cards, and slicers interactively in Power BI Desktop (package integrity passes; interactive verification is pending).
+- [x] Task 4.2–4.3: Verify dashboard visuals, KPI cards, and slicers interactively in Power BI Desktop (completed; user-confirmed).
 - [x] Deliver the SQLite/SQL work, Power BI report package, and 1–2 page insights report.
 
 ### Milestone 2: Python Data Pipeline — Complete

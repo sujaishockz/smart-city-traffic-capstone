@@ -75,5 +75,5 @@ definitions, although weather is not sufficient to explain congestion on its own
 The Power BI preparation view and dashboard specification are in
 `sql/06_powerbi_queries.sql` and `reports/powerbi_dashboard_spec.md`. They provide
 fields for date, hour, Celsius temperature and traffic category, plus the required
-trend, weather and KPI queries. The remaining manual deliverable is the `.pbix`
-file, which must be created in Power BI Desktop.
+trend, weather and KPI queries. The `.pbix` dashboard is included, and its visuals,
+KPI cards, and slicers were checked in Power BI Desktop (user-confirmed).

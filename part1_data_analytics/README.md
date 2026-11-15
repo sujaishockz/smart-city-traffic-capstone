@@ -43,7 +43,7 @@ python3 sql/05_probability_congestion.py
 | [Part 1 insights report](reports/part1_insights_report.md) | Consolidated findings from the analytics tasks |
 | [Power BI dashboard specification](reports/powerbi_dashboard_spec.md) | Dashboard fields, visuals, measures, and slicer requirements |
 | [Power BI dashboard results](reports/Power%20BI%20dashboard%20results.md) | Summary of dashboard findings |
-| [Power BI dashboard file](reports/smart-city-traffic-dashboard.pbix) | Power BI report package; interactive visuals and slicers still require Desktop verification |
+| [Power BI dashboard file](reports/smart-city-traffic-dashboard.pbix) | Power BI report package; interactive visuals and slicers verified in Power BI Desktop |
 | [SQLite database](db/traffic.db) | Database generated from the source CSV |
 
 The source dataset is [Metro Interstate Traffic Volume](data/Metro_Interstate_Traffic_Volume.csv).
@@ -85,7 +85,7 @@ The consolidated weather and temperature findings are documented in
       (see `reports/sql_traffic_analysis_results.md`).
 - [x] Descriptive Statistics and Correlation
 - [x] Probability and Congestion Analysis
-- [x] Power BI preparation query, specification, and [`smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix) package are present; interactive behavior is not verified on this macOS environment.
+- [x] Power BI preparation query, specification, and [`smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix) package are present; interactive behavior verified in Power BI Desktop (user-confirmed).
 - [x] Power BI Dashboard Results Summary: Weather and temperature findings are complete in [`reports/Power BI dashboard results.md`](reports/Power%20BI%20dashboard%20results.md).
 
 ## How to Run
@@ -119,18 +119,18 @@ The consolidated weather and temperature findings are documented in
    timestamp. See `reports/sql_traffic_analysis_results.md` and the Part 2
    methodology report.
 
-## Power BI Dashboard Manual Check
+## Power BI Dashboard Verification
 
-The Power BI report package is
+The Power BI report package and interactive dashboard verification are complete.
+Visuals, KPI cards, and slicers were checked in Power BI Desktop (user-confirmed).
+The report package is
 [`reports/smart-city-traffic-dashboard.pbix`](reports/smart-city-traffic-dashboard.pbix).
-On macOS, check its package integrity with:
+Its package integrity can also be checked with:
 
 ```bash
 unzip -t reports/smart-city-traffic-dashboard.pbix
 ```
 
-To verify visual behavior, open the file in Power BI Desktop on Windows and
-confirm the daily, hourly, weather, and temperature/traffic visuals, KPI cards,
-and hour/weather/traffic-category slicers. The ZIP integrity check passed;
-interactive visual testing requires Power BI Desktop and was not available in
-this macOS run.
+The archive integrity check passes. The interactive visual check is recorded as
+complete based on the user's confirmation that the report was opened and checked
+in Power BI Desktop.

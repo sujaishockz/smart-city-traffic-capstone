@@ -30,7 +30,8 @@ the Part 1 dashboard:
 - KPI cards: total hours, average traffic, and average temperature.
 - Slicers: hour, weather condition, and traffic category.
 
-The actual `.pbix` dashboard must be created in Power BI Desktop. Power BI
-Desktop is not available in this macOS workspace, so this repository contains
-the reproducible preparation queries and dashboard specification instead of
-claiming a completed binary dashboard file.
+The `.pbix` dashboard is included at
+`reports/smart-city-traffic-dashboard.pbix`. Its visuals, KPI cards, and
+slicers were checked interactively in Power BI Desktop; this completion is
+recorded based on the user's confirmation. The SQL preparation query and this
+specification document the dashboard fields and expected behavior.
